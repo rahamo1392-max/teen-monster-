@@ -887,6 +887,60 @@ initializeAuth();
   }
 
   async function signUp() {
+  const username = document.getElementById("tm-chat-username").value.trim();
+  const email = document.getElementById("tm-chat-email").value.trim();
+  const password = document.getElementById("tm-chat-password").value;
+
+  const status = document.querySelectorAll("#tm-chat-status");
+
+  function showStatus(message) {
+    status.forEach(el => el.textContent = message);
+  }
+
+  if (!username || !email || !password) {
+    showStatus("لطفاً همه فیلدها را پر کن 💜");
+    return;
+  }
+
+  if (password.length < 6) {
+    showStatus("رمز عبور باید حداقل ۶ کاراکتر باشد.");
+    return;
+  }
+
+  showStatus("در حال ساخت حساب کاربری...");
+
+  const { data, error } = await db.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: {
+        username: username
+      }
+    }
+  });
+
+  if (error) {
+    showStatus("خطا در ثبت‌نام: " + error.message);
+    return;
+  }
+
+  if (data.session && data.user) {
+    // ورود خودکار به چت گروهی پس از ثبت‌نام
+    await updateSession(data.user);
+
+    document.getElementById("tm-chat-auth").style.display = "none";
+    document.getElementById("tm-chat-room").style.display = "block";
+
+    showStatus("به گروه طرفداران TEEN MONSTER خوش اومدی! 💜");
+
+    await loadMessages();
+    return;
+  }
+
+  showStatus(
+    "حسابت ساخته شد! 💜 ایمیلت رو تأیید کن و بعد وارد حسابت شو تا به چت گروهی بپیوندی."
+  );
+}
     const username = $("tm-chat-username").value.trim();
     const email = $("tm-chat-email").value.trim();
     const password = $("tm-chat-password").value;
