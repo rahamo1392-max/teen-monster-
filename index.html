@@ -13,6 +13,450 @@
 </style>
 </head>
 <body>
+  <!-- TEEN MONSTER | Online Fan Chat -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+#tm-chat-widget {
+  position: fixed;
+  bottom: 18px;
+  left: 18px;
+  z-index: 99999;
+  font-family: Arial, sans-serif;
+  direction: rtl;
+  color: #fff;
+}
+#tm-chat-toggle {
+  background: linear-gradient(135deg,#a855f7,#6d28d9);
+  color: white;
+  border: 0;
+  border-radius: 30px;
+  padding: 13px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 25px #9333ea55;
+}
+#tm-chat-panel {
+  display: none;
+  width: min(340px, calc(100vw - 36px));
+  height: 460px;
+  max-height: 75vh;
+  background: #100d19;
+  border: 1px solid #7c3aed;
+  border-radius: 18px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px #0009;
+}
+#tm-chat-header {
+  padding: 15px;
+  background: linear-gradient(135deg,#6d28d9,#9333ea);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+}
+#tm-chat-close {
+  border: 0;
+  background: transparent;
+  color: white;
+  font-size: 23px;
+  cursor: pointer;
+}
+#tm-chat-auth {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#tm-chat-widget input,
+#tm-chat-widget button {
+  font-family: inherit;
+}
+#tm-chat-widget input {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #40304f;
+  background: #1b1526;
+  color: white;
+  border-radius: 9px;
+  padding: 11px;
+  outline: none;
+}
+#tm-chat-widget input:focus {
+  border-color: #a855f7;
+}
+.tm-chat-btn {
+  background: #7c3aed;
+  color: white;
+  border: 0;
+  border-radius: 9px;
+  padding: 10px;
+  cursor: pointer;
+}
+.tm-chat-secondary {
+  background: #292035;
+}
+#tm-chat-status {
+  font-size: 12px;
+  color: #d8b4fe;
+  line-height: 1.8;
+}
+#tm-chat-messages {
+  height: 270px;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.tm-chat-message {
+  background: #21182f;
+  border: 1px solid #38244d;
+  border-radius: 12px;
+  padding: 9px 11px;
+  overflow-wrap: anywhere;
+}
+.tm-chat-name {
+  color: #d8b4fe;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.tm-chat-text {
+  font-size: 14px;
+  line-height: 1.7;
+}
+.tm-chat-time {
+  color: #9ca3af;
+  font-size: 10px;
+  margin-top: 5px;
+  text-align: left;
+}
+#tm-chat-sendrow {
+  display: flex;
+  gap: 7px;
+  padding: 10px;
+  border-top: 1px solid #38244d;
+}
+#tm-chat-sendrow input {
+  flex: 1;
+  min-width: 0;
+}
+#tm-chat-sendrow button {
+  padding: 0 15px;
+}
+#tm-chat-room {
+  display: none;
+}
+#tm-chat-logout {
+  margin: 0 10px 8px;
+  width: calc(100% - 20px);
+}
+</style>
+
+<div id="tm-chat-widget">
+  <div id="tm-chat-panel">
+    <div id="tm-chat-header">
+      <span>💜 TEEN MONSTER FAN CHAT</span>
+      <button id="tm-chat-close" aria-label="بستن">×</button>
+    </div>
+
+    <div id="tm-chat-auth">
+      <p style="margin:4px 0">برای گفت‌وگو با طرفدارها وارد شو یا ثبت‌نام کن.</p>
+      <input id="tm-chat-username" placeholder="نام نمایشی" maxlength="30">
+      <input id="tm-chat-email" type="email" placeholder="ایمیل">
+      <input id="tm-chat-password" type="password"
+             placeholder="رمز عبور" autocomplete="current-password">
+      <button class="tm-chat-btn" id="tm-chat-signup">ثبت‌نام</button>
+      <button class="tm-chat-btn tm-chat-secondary" id="tm-chat-login">ورود</button>
+      <div id="tm-chat-status" role="status"></div>
+    </div>
+
+    <div id="tm-chat-room">
+      <div id="tm-chat-messages" aria-live="polite"></div>
+      <div id="tm-chat-sendrow">
+        <input id="tm-chat-message" maxlength="1000"
+               placeholder="پیامت رو بنویس..." aria-label="پیام">
+        <button class="tm-chat-btn" id="tm-chat-send">ارسال</button>
+      </div>
+      <button class="tm-chat-btn tm-chat-secondary" id="tm-chat-logout">
+        خروج از حساب
+      </button>
+      <div id="tm-chat-status" role="status" style="padding:0 12px 8px"></div>
+    </div>
+  </div>
+
+  <button id="tm-chat-toggle">💬 گفت‌وگوی طرفدارها</button>
+</div>
+
+<script>
+(() => {
+  const SUPABASE_URL = "https://vwawoyupncebmwhjxnve.supabase.co";
+  const SUPABASE_KEY =
+    "sb_publishable_etk6om08ElELEj--2mlu5Q_mtsZ1nJN";
+
+  const db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  const $ = id => document.getElementById(id);
+
+  let currentUser = null;
+  let chatChannel = null;
+  let loadingMessages = false;
+
+  const panel = $("tm-chat-panel");
+  const authBox = $("tm-chat-auth");
+  const room = $("tm-chat-room");
+  const messagesBox = $("tm-chat-messages");
+
+  function setStatus(message) {
+    document.querySelectorAll("#tm-chat-status").forEach(el => {
+      el.textContent = message;
+    });
+  }
+
+  $("tm-chat-toggle").addEventListener("click", () => {
+    panel.style.display =
+      panel.style.display === "block" ? "none" : "block";
+  });
+
+  $("tm-chat-close").addEventListener("click", () => {
+    panel.style.display = "none";
+  });
+
+  function showMessage(message) {
+    const row = document.createElement("div");
+    row.className = "tm-chat-message";
+
+    const name = document.createElement("div");
+    name.className = "tm-chat-name";
+    name.textContent = message.username || "طرفدار";
+
+    const body = document.createElement("div");
+    body.className = "tm-chat-text";
+    body.textContent = message.message || "";
+
+    const time = document.createElement("div");
+    time.className = "tm-chat-time";
+
+    if (message.created_at) {
+      time.textContent = new Date(message.created_at)
+        .toLocaleString("fa-IR", {
+          hour: "2-digit",
+          minute: "2-digit"
+        });
+    }
+
+    row.append(name, body, time);
+    messagesBox.appendChild(row);
+    messagesBox.scrollTop = messagesBox.scrollHeight;
+  }
+
+  async function loadMessages() {
+    if (!currentUser || loadingMessages) return;
+
+    loadingMessages = true;
+    messagesBox.replaceChildren();
+
+    const { data, error } = await db
+      .from("chat_messages")
+      .select("id,user_id,username,message,created_at")
+      .order("created_at", { ascending: false })
+      .limit(50);
+
+    loadingMessages = false;
+
+    if (error) {
+      setStatus("دریافت پیام‌ها ناموفق بود. تنظیمات Supabase را بررسی کن.");
+      return;
+    }
+
+    (data || []).reverse().forEach(showMessage);
+  }
+
+  function subscribeToMessages() {
+    if (chatChannel) {
+      db.removeChannel(chatChannel);
+      chatChannel = null;
+    }
+
+    chatChannel = db
+      .channel("tm-public-fan-chat")
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "chat_messages"
+        },
+        payload => {
+          const message = payload.new;
+
+          // پیام خودمان قبلاً به صفحه اضافه شده است.
+          if (message.user_id === currentUser?.id) return;
+
+          showMessage(message);
+        }
+      )
+      .subscribe();
+  }
+
+  async function signUp() {
+    const username = $("tm-chat-username").value.trim();
+    const email = $("tm-chat-email").value.trim();
+    const password = $("tm-chat-password").value;
+
+    if (!username || !email || !password) {
+      setStatus("نام نمایشی، ایمیل و رمز عبور را وارد کن.");
+      return;
+    }
+
+    if (password.length < 6) {
+      setStatus("رمز عبور باید حداقل ۶ کاراکتر داشته باشد.");
+      return;
+    }
+
+    setStatus("در حال ثبت‌نام...");
+
+    const { data, error } = await db.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { username }
+      }
+    });
+
+    if (error) {
+      setStatus("ثبت‌نام انجام نشد: " + error.message);
+      return;
+    }
+
+    if (data.session) {
+      setStatus("ثبت‌نام موفق بود!");
+      await updateSession(data.session.user);
+    } else {
+      setStatus("ثبت‌نام انجام شد. اگر تأیید ایمیل فعال است، ایمیلت را بررسی کن.");
+    }
+  }
+
+  async function logIn() {
+    const email = $("tm-chat-email").value.trim();
+    const password = $("tm-chat-password").value;
+
+    if (!email || !password) {
+      setStatus("ایمیل و رمز عبور را وارد کن.");
+      return;
+    }
+
+    setStatus("در حال ورود...");
+
+    const { data, error } = await db.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) {
+      setStatus("ورود ناموفق بود: " + error.message);
+      return;
+    }
+
+    await updateSession(data.user);
+  }
+
+  async function updateSession(user) {
+    currentUser = user || null;
+
+    if (!currentUser) {
+      authBox.style.display = "flex";
+      room.style.display = "none";
+      messagesBox.replaceChildren();
+
+      if (chatChannel) {
+        await db.removeChannel(chatChannel);
+        chatChannel = null;
+      }
+      return;
+    }
+
+    authBox.style.display = "none";
+    room.style.display = "block";
+    setStatus("");
+
+    await loadMessages();
+    subscribeToMessages();
+  }
+
+  async function sendMessage() {
+    if (!currentUser) {
+      setStatus("برای ارسال پیام ابتدا وارد شو.");
+      return;
+    }
+
+    const input = $("tm-chat-message");
+    const message = input.value.trim();
+
+    if (!message) return;
+
+    if (message.length > 1000) {
+      setStatus("پیام نمی‌تواند بیشتر از ۱۰۰۰ کاراکتر باشد.");
+      return;
+    }
+
+    $("tm-chat-send").disabled = true;
+
+    const username =
+      currentUser.user_metadata?.username ||
+      currentUser.email?.split("@")[0] ||
+      "طرفدار";
+
+    const { data, error } = await db
+      .from("chat_messages")
+      .insert({
+        user_id: currentUser.id,
+        username,
+        message
+      })
+      .select("id,user_id,username,message,created_at")
+      .single();
+
+    $("tm-chat-send").disabled = false;
+
+    if (error) {
+      setStatus("ارسال پیام ناموفق بود. اتصال و مجوزهای جدول را بررسی کن.");
+      return;
+    }
+
+    input.value = "";
+    showMessage(data);
+    setStatus("");
+  }
+
+  $("tm-chat-signup").addEventListener("click", signUp);
+  $("tm-chat-login").addEventListener("click", logIn);
+  $("tm-chat-send").addEventListener("click", sendMessage);
+
+  $("tm-chat-message").addEventListener("keydown", event => {
+    if (event.key === "Enter") sendMessage();
+  });
+
+  $("tm-chat-logout").addEventListener("click", async () => {
+    await db.auth.signOut();
+    await updateSession(null);
+    setStatus("از حساب خارج شدی.");
+  });
+
+  db.auth.onAuthStateChange((event, session) => {
+    updateSession(session?.user || null);
+  });
+
+  db.auth.getSession().then(({ data }) => {
+    updateSession(data.session?.user || null);
+  });
+})();
+</script>
 <header class="top wrap">
   <div class="logo">TEEN MONSTER</div>
   <nav class="nav"><a href="#home">خانه</a><a href="#members">اعضا</a><a href="#music">موسیقی‌ها</a><a href="#news">اخبار</a><a href="#contact">ارتباط با ما</a></nav>
