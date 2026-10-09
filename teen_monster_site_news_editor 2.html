@@ -281,4 +281,319 @@ $("newsList").addEventListener("click",e=>{
 renderNews();
 </script>
 </body>
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://vwawoyupncebmwhjxnve.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_etk6om08ElELEj--2mlu5Q_mtsZ1nJN";
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+let currentUser = null;
+let privateRecipient = null;
+
+const get = id => document.getElementById(id);
+
+function showMessage(id, message) {
+  const element = get(id);
+  if (element) element.textContent = message;
+}
+
+function safeText(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+/* ثبت‌نام */
+async function registerUser(email, password, username) {
+  email = email.trim();
+  username = username.trim();
+
+  if (!email || !username || password.length < 6) {
+    return { error: { message: "اطلاعات ثبت‌نام را بررسی کن." } };
+  }
+
+  const { data, error } = await db.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { display_name: username }
+    }
+  });
+
+  if (error) return { error };
+
+  if (data.user && data.session) {
+    currentUser = data.user;
+    await createProfile(username);
+  }
+
+  return { data };
+}
+
+/* ورود */
+async function loginUser(email, password) {
+  const { data, error } = await db.auth.signInWithPassword({
+    email: email.trim(),
+    password
+  });
+
+  if (error) return { error };
+
+  currentUser = data.user;
+  return { data };
+}
+
+/* خروج */
+async function logoutUser() {
+  const { error } = await db.auth.signOut();
+
+  if (error) return { error };
+
+  currentUser = null;
+  privateRecipient = null;
+
+  return { success: true };
+}
+
+/* ایجاد پروفایل کاربر */
+async function createProfile(username) {
+  if (!currentUser) return;
+
+  const { error } = await db
+    .from("tm_profiles")
+    .upsert({
+      id: currentUser.id,
+      username: username.trim().slice(0, 30),
+      is_admin: false
+    }, {
+      onConflict: "id",
+      ignoreDuplicates: true
+    });
+
+  if (error) {
+    console.error("Profile error:", error.message);
+  }
+}
+
+/* بازیابی نشست قبلی */
+async function initializeAuth() {
+  const { data, error } = await db.auth.getSession();
+
+  if (error) {
+    console.error(error.message);
+    return;
+  }
+
+  currentUser = data.session?.user ?? null;
+}
+
+db.auth.onAuthStateChange((_event, session) => {
+  currentUser = session?.user ?? null;
+});
+
+/* ارسال پیام عمومی */
+async function sendPublicMessage(message) {
+  if (!currentUser) {
+    return { error: { message: "ابتدا وارد حساب کاربری شو." } };
+  }
+
+  message = message.trim();
+
+  if (!message || message.length > 1000) {
+    return { error: { message: "پیام باید بین ۱ تا ۱۰۰۰ کاراکتر باشد." } };
+  }
+
+  const username = (
+    currentUser.user_metadata?.display_name ||
+    currentUser.email?.split("@")[0] ||
+    "طرفدار"
+  ).slice(0, 30);
+
+  const { error } = await db
+    .from("chat_messages")
+    .insert({
+      user_id: currentUser.id,
+      username,
+      message
+    });
+
+  return { error };
+}
+
+/* دریافت پیام‌های عمومی */
+async function loadPublicMessages() {
+  const { data, error } = await db
+    .from("chat_messages")
+    .select("id,user_id,username,message,created_at")
+    .order("created_at", { ascending: true })
+    .limit(100);
+
+  if (error) {
+    console.error("Chat error:", error.message);
+    return [];
+  }
+
+  return data ?? [];
+}
+
+/* نمایش پیام‌های عمومی */
+async function renderPublicMessages(containerId) {
+  const container = get(containerId);
+  if (!container) return;
+
+  const messages = await loadPublicMessages();
+
+  container.replaceChildren();
+
+  messages.forEach(message => {
+    const bubble = document.createElement("div");
+    bubble.className =
+      "bubble" +
+      (currentUser && message.user_id === currentUser.id ? " me" : "");
+
+    const username = document.createElement("b");
+    username.textContent = (message.username || "طرفدار") + ": ";
+
+    const content = document.createElement("span");
+    content.textContent = message.message;
+
+    bubble.append(username, content);
+    container.appendChild(bubble);
+  });
+
+  container.scrollTop = container.scrollHeight;
+}
+
+/* انتخاب گیرنده پیام خصوصی */
+function selectPrivateRecipient(userId) {
+  if (!currentUser) {
+    alert("ابتدا وارد حساب کاربری شو.");
+    return;
+  }
+
+  if (userId === currentUser.id) {
+    alert("نمی‌توانی به خودت پیام بفرستی.");
+    return;
+  }
+
+  privateRecipient = userId;
+}
+
+/* ارسال پیام خصوصی */
+async function sendPrivateMessage(message) {
+  if (!currentUser) {
+    return { error: { message: "ابتدا وارد حساب کاربری شو." } };
+  }
+
+  if (!privateRecipient) {
+    return { error: { message: "ابتدا گیرنده را انتخاب کن." } };
+  }
+
+  message = message.trim();
+
+  if (!message || message.length > 1000) {
+    return { error: { message: "پیام باید بین ۱ تا ۱۰۰۰ کاراکتر باشد." } };
+  }
+
+  const { error } = await db
+    .from("private_messages")
+    .insert({
+      sender_id: currentUser.id,
+      recipient_id: privateRecipient,
+      message
+    });
+
+  return { error };
+}
+
+/* دریافت گفت‌وگوی خصوصی */
+async function loadPrivateMessages(otherUserId) {
+  if (!currentUser) {
+    return { error: { message: "ابتدا وارد حساب کاربری شو." } };
+  }
+
+  if (!otherUserId || otherUserId === currentUser.id) {
+    return { error: { message: "گیرنده معتبر نیست." } };
+  }
+
+  const { data, error } = await db
+    .from("private_messages")
+    .select("id,sender_id,recipient_id,message,created_at")
+    .or(
+      `and(sender_id.eq.${currentUser.id},recipient_id.eq.${otherUserId}),` +
+      `and(sender_id.eq.${otherUserId},recipient_id.eq.${currentUser.id})`
+    )
+    .order("created_at", { ascending: true })
+    .limit(100);
+
+  return { data, error };
+}
+
+/* فهرست حساب‌های دیگر */
+async function loadUserList() {
+  if (!currentUser) {
+    return { error: { message: "ابتدا وارد حساب کاربری شو." } };
+  }
+
+  const { data, error } = await db
+    .from("tm_profiles")
+    .select("id,username")
+    .neq("id", currentUser.id)
+    .order("username")
+    .limit(100);
+
+  return { data, error };
+}
+
+/* اخبار عمومی */
+async function loadNews() {
+  const { data, error } = await db
+    .from("tm_news")
+    .select("id,title,body,created_at")
+    .order("created_at", { ascending: false })
+    .limit(30);
+
+  if (error) {
+    console.error("News error:", error.message);
+    return [];
+  }
+
+  return data ?? [];
+}
+
+/* تازه‌سازی خودکار چت و اخبار */
+db.channel("teen-monster-realtime")
+  .on(
+    "postgres_changes",
+    {
+      event: "*",
+      schema: "public",
+      table: "chat_messages"
+    },
+    () => renderPublicMessages("publicChatBox")
+  )
+  .on(
+    "postgres_changes",
+    {
+      event: "*",
+      schema: "public",
+      table: "tm_news"
+    },
+    () => loadNews()
+  )
+  .subscribe();
+
+initializeAuth();
+</script>  
 </html>
