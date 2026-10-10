@@ -64,11 +64,11 @@
 <script>
 (() => {
   const SUPABASE_URL = "https://tttffiyxqxphixryjavq.supabase.co";
-  const SUPABASE_PUBLISHABLE_KEY = "کلید_عمومی_پروژه_خودت";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_WetuCjAtn1DCom1pOF3SKw_fxMbJdr_";
   const $ = id => document.getElementById(id);
   const authStatus = $("authStatus");
   const newsStatus = $("newsStatus");
-  if (!window.supabase || SUPABASE_PUBLISHABLE_KEY === "کلید_عمومی_پروژه_خودت") {
+  if (!window.supabase || SUPABASE_PUBLISHABLE_KEY === "sb_publishable_WetuCjAtn1DCom1pOF3SKw_fxMbJdr_") {
     authStatus.textContent = "ابتدا کلید عمومی Supabase را در کد وارد کن.";
     newsStatus.textContent = "اتصال Supabase هنوز تنظیم نشده است.";
     $("newsList").textContent = "";
