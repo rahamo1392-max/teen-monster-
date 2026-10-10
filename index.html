@@ -2,361 +2,918 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEEN MONSTER | گروه موسیقی</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TEEN MONSTER 👑</title>
 <style>
-:root{--bg:#05050a;--panel:#0c0b15;--panel2:#11101c;--purple:#a855f7;--hot:#d946ef;--line:#332044;--muted:#aaa2bb;--text:#f8f5ff}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% 0%,#25103b 0,transparent 36%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1300px;margin:auto;padding:0 20px}.top{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#07060df2;backdrop-filter:blur(14px);z-index:10}.logo{font-weight:900;font-style:italic;font-size:clamp(20px,3vw,31px);letter-spacing:1px;color:#d78cff;text-shadow:0 0 18px #a855f7}.nav{display:flex;gap:18px;flex-wrap:wrap}.nav a{color:#ddd3ed;text-decoration:none;font-size:13px}.nav a:hover{color:#d78cff}.btn{border:1px solid var(--purple);background:linear-gradient(120deg,#791bd1,#a855f7);color:white;border-radius:11px;padding:10px 15px}.btn.ghost{background:transparent}.hero{margin-top:18px;min-height:300px;border:1px solid #402254;border-radius:20px;overflow:hidden;position:relative;display:flex;align-items:center;padding:36px;background:linear-gradient(90deg,#080710 0%,#0b0815df 42%,#180a28a8 100%),radial-gradient(circle at 72% 40%,#8b25d6 0,transparent 25%),linear-gradient(135deg,#171022,#06060b)}.hero:after{content:"♫  ♪  ♬";position:absolute;left:6%;top:12%;font-size:70px;color:#a855f7;opacity:.13;transform:rotate(-12deg)}.hero-copy{position:relative;z-index:1;max-width:650px}.eyebrow{color:#d7a4ff;letter-spacing:3px;font-size:12px}.hero h1{font-size:clamp(36px,7vw,72px);margin:12px 0;text-shadow:0 0 30px #a855f755}.hero-title-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.hero-photo-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border:1px solid #a855f7;border-radius:11px;background:#170c25;color:#f4dcff;font-size:13px;cursor:pointer;transition:.2s}.hero-photo-btn:hover{background:#35104d;box-shadow:0 0 18px #a855f733}.hero-photo-preview{display:none;width:150px;height:150px;object-fit:cover;border-radius:18px;border:3px solid #a855f7;box-shadow:0 0 20px #7c3aed55;flex-shrink:0}.hero-photo-preview.visible{display:block}.hero p{color:#d0c7df;line-height:2}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.section{margin:28px 0}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.section h2{font-size:21px;margin:0}.sub{font-size:12px;color:var(--muted);margin-top:7px}.members{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:13px}.member{min-height:220px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(160deg,#191025,#090910);padding:0;overflow:hidden;text-align:right;color:white;transition:.25s}.member:hover{transform:translateY(-5px);border-color:var(--purple);box-shadow:0 8px 28px #8b25d633}.portrait{height:145px;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#7133a1,#21132f 45%,#090910 78%);font-size:56px;filter:saturate(.8)}.member:nth-child(2) .portrait{background:radial-gradient(circle at 50% 35%,#6c315c,#211222 48%,#090910)}.member:nth-child(3) .portrait{background:radial-gradient(circle at 50% 35%,#623c8d,#1c112a 48%,#090910)}.member:nth-child(4) .portrait{background:radial-gradient(circle at 50% 35%,#633b70,#17101f 48%,#090910)}.member:nth-child(5) .portrait{background:radial-gradient(circle at 50% 35%,#56318a,#17101f 48%,#090910)}.member-info{padding:12px}.member-info b{display:block}.member-info span{color:var(--muted);font-size:12px}.member-tools{padding:0 12px 12px}.member-tools label{display:inline-block;color:#e6caff;border:1px solid #5b2a80;border-radius:8px;padding:6px 8px;font-size:11px;cursor:pointer}.member-tools input{display:none}.portrait img{width:100%;height:100%;object-fit:cover}.columns{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(270px,.8fr);gap:16px}.panel{border:1px solid var(--line);border-radius:16px;background:linear-gradient(140deg,#100e1a,#08080f);padding:18px;min-width:0}.search{display:flex;gap:9px;margin:15px 0}.search input,.field{width:100%;background:#080710;border:1px solid #45305a;color:white;border-radius:10px;padding:12px;outline:none}.search input:focus,.field:focus{border-color:var(--purple)}.tracks{display:grid;gap:8px}.track{display:flex;align-items:center;gap:12px;padding:10px;border-bottom:1px solid #21182d}.cover{width:48px;height:48px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#6d28d9,#180c2a);font-size:21px;flex-shrink:0}.track-info{flex:1;min-width:0}.track-info b{display:block;font-size:14px}.track-info small{color:var(--muted)}.track button,.icon-btn{background:#151020;color:#e8d5ff;border:1px solid #5b2a80;border-radius:50%;width:37px;height:37px}.empty{padding:20px;color:var(--muted);text-align:center}.side-card{margin-bottom:14px}.news-item{padding:13px 0;border-bottom:1px solid #2b2038;color:#ddd3ed;font-size:13px;line-height:1.8}.footer{border-top:1px solid var(--line);margin-top:30px;padding:25px 0;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px}.player{position:sticky;bottom:0;background:#080710f5;border-top:1px solid #482663;padding:12px 20px;display:flex;align-items:center;gap:14px;z-index:8;backdrop-filter:blur(12px)}.player .track-info{max-width:240px}.player audio{height:34px;flex:1;min-width:120px;max-width:700px;accent-color:var(--purple)}.modal-bg{display:none;position:fixed;inset:0;background:#000b;z-index:30;align-items:center;justify-content:center;padding:18px}.modal-bg.show{display:flex}.modal{width:min(520px,100%);max-height:90vh;overflow:auto;background:#0c0a14;border:1px solid #69358d;border-radius:18px;padding:22px;box-shadow:0 0 55px #7e22ce33}.modal-head{display:flex;justify-content:space-between;align-items:center}.close{background:transparent;color:white;border:0;font-size:24px}.form{display:grid;gap:12px;margin-top:15px}.chatbox{height:190px;overflow:auto;background:#07060d;border:1px solid var(--line);border-radius:10px;padding:10px;margin:12px 0}.bubble{padding:8px 11px;background:#251333;border-radius:12px;margin:7px 0;max-width:85%;font-size:13px}.bubble.me{margin-right:auto;background:#512080}.notice{color:var(--muted);font-size:12px;line-height:1.8}.hidden{display:none!important}.admin-only:not(.hidden){display:block}
-#publicChat .chatbox{height:320px;display:flex;flex-direction:column;gap:8px}.chat-message{padding:9px 12px;border:1px solid #3b2450;border-radius:12px;background:#1a1025;max-width:90%;align-self:flex-start;overflow-wrap:anywhere}.chat-message.mine{align-self:flex-end;background:#4a1d68;border-color:#8b45b6}.chat-message .chat-meta{display:flex;gap:10px;align-items:center;font-size:11px;color:#d8b7f0;margin-bottom:5px}.chat-message .chat-text{font-size:14px;line-height:1.8;white-space:pre-wrap}.chat-compose{display:flex;gap:8px}.chat-compose .field{flex:1;min-width:0}.chat-status{font-size:12px;color:var(--muted);line-height:1.8;margin:8px 0}@media(max-width:1100px){.members{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media(max-width:850px){.hero-photo-preview{width:120px;height:120px}.nav{display:none}.members{grid-template-columns:repeat(2,minmax(0,1fr))}.columns{grid-template-columns:1fr}.hero{padding:24px;min-height:260px}.player{flex-wrap:wrap}.player audio{order:3;flex-basis:100%}}
-@media(min-width:560px) and (max-width:850px){.members{grid-template-columns:repeat(3,minmax(0,1fr))}}
+:root {
+  --bg: #08060d;
+  --panel: #130d20;
+  --purple: #a855f7;
+  --pink: #ed4bff;
+  --text: #f6edff;
+  --muted: #b7a6c9;
+  --border: #38214c;
+  --danger: #ff5378;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at top, #28103e 0%, var(--bg) 48%);
+  color: var(--text);
+  font-family: Tahoma, Arial, sans-serif;
+  min-height: 100vh;
+}
+button, input, textarea { font: inherit; }
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 17px;
+  color: white;
+  background: linear-gradient(120deg, #7024c9, #bd36ed);
+  transition: .2s;
+}
+button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+}
+input, textarea {
+  width: 100%;
+  color: white;
+  background: #0c0912;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  margin: 6px 0 12px;
+  outline: none;
+}
+input:focus, textarea:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 10px #a855f744;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #08060df2;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 15px 5%;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--pink);
+  text-shadow: 0 0 18px #b42cff99;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+nav button {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--muted);
+}
+nav button:hover {
+  border-color: var(--purple);
+  color: white;
+}
+main {
+  width: min(1100px, 92%);
+  margin: auto;
+  padding: 28px 0 60px;
+}
+.page { display: none; }
+.page.active { display: block; }
+.hero {
+  text-align: center;
+  padding: 70px 20px;
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  background: linear-gradient(140deg, #21102fbb, #0b0812ee);
+  box-shadow: 0 0 35px #9b35ee12;
+}
+.hero h1 {
+  font-size: clamp(35px, 7vw, 66px);
+  margin: 12px 0;
+  color: var(--pink);
+  text-shadow: 0 0 30px #c026d388;
+}
+.hero p {
+  max-width: 650px;
+  line-height: 2;
+  color: var(--muted);
+  margin: 15px auto 25px;
+}
+.badge {
+  display: inline-block;
+  border: 1px solid var(--purple);
+  color: #e9c5ff;
+  padding: 7px 13px;
+  border-radius: 100px;
+  font-size: 13px;
+}
+.section-title {
+  font-size: 26px;
+  margin: 20px 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.card {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #181024, #0d0914);
+  overflow-wrap: anywhere;
+}
+.card h3 { margin-top: 0; }
+.muted { color: var(--muted); line-height: 1.9; }
+.form-card {
+  width: min(460px, 100%);
+  margin: 20px auto;
+}
+.avatar {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #29123b;
+  border: 2px solid var(--pink);
+  display: block;
+  margin-bottom: 14px;
+}
+.music-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.music-row:last-child { border-bottom: 0; }
+audio { width: min(100%, 330px); }
+.chat-box {
+  height: 330px;
+  overflow-y: auto;
+  background: #0a0710;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 12px;
+}
+.message {
+  padding: 10px 12px;
+  margin: 9px 0;
+  border-radius: 12px;
+  background: #21122e;
+  border-right: 3px solid var(--purple);
+  overflow-wrap: anywhere;
+}
+.message small {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.danger { background: #a32149; }
+.secondary { background: #332442; }
+.hidden { display: none !important; }
+.notice {
+  background: #1a1026;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px;
+  margin: 12px 0;
+  line-height: 1.9;
+}
+footer {
+  text-align: center;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding: 24px 10px;
+}
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 22px 0;
+}
+@media (max-width: 600px) {
+  header { padding: 12px; }
+  .topbar { justify-content: center; }
+  nav { justify-content: center; }
+  .hero { padding: 45px 15px; }
+}
 </style>
 </head>
 <body>
-<header class="top wrap">
-  <div class="logo">TEEN MONSTER</div>
-  <nav class="nav"><a href="#home">خانه</a><a href="#members">اعضا</a><a href="#music">موسیقی‌ها</a><a href="#news">اخبار</a><a href="#contact">ارتباط با ما</a></nav>
-  <div><button class="btn ghost" id="accountBtn">ورود / ثبت‌نام</button></div>
-</header>
-<main class="wrap">
-  <section class="hero" id="home">
-    <div class="hero-copy">
-      <div class="eyebrow">MUSIC • ENERGY • COMMUNITY</div>
-      <div class="hero-title-row">
-        <h1>TEEN MONSTER</h1>
-        <label for="heroPhotoInput" class="hero-photo-btn">📷 افزودن عکس</label>
-        <input id="heroPhotoInput" type="file" accept="image/*" hidden>
-        <img id="heroPhotoPreview" class="hero-photo-preview" alt="عکس انتخاب‌شده کنار عنوان">
-      </div>
-      <p>موسیقی ما، صدای ماست؛ به دنیای طرفدارهای تین مانستر خوش اومدی.</p>
-      <div class="hero-actions"><a class="btn" href="#music" style="text-decoration:none">♪ شنیدن آهنگ‌ها</a><a class="btn ghost" href="#members" style="text-decoration:none">آشنایی با اعضا</a></div>
-    </div>
-  </section>
-  <section class="section" id="members">
-    <div class="section-head"><div><h2>✦ اعضای گروه</h2><div class="sub">روی عکس هر عضو بزن تا پروفایلش رو ببینی و پیام بفرستی.</div></div><span id="adminBadge" class="sub"></span></div>
-    <div class="members" id="membersGrid"></div>
-  </section>
-  <section class="section panel" id="publicChat">
-    <div class="section-head"><div><h2>💬 چت عمومی طرفدارها</h2><div class="sub">با اعضای دیگر گفتگو کن؛ لطفاً اطلاعات شخصی مثل شماره تلفن و آدرس را منتشر نکن.</div></div><span id="chatConnection" class="sub">در حال بررسی اتصال…</span></div>
-    <div class="chatbox" id="publicChatMessages" role="log" aria-live="polite"><div class="empty">در حال بارگذاری پیام‌ها…</div></div>
-    <form id="publicChatForm" class="chat-compose"><input id="publicChatInput" class="field" maxlength="500" placeholder="پیامت رو بنویس…" autocomplete="off" required><button class="btn" type="submit">ارسال</button></form>
-    <p class="chat-status" id="publicChatStatus">برای ارسال پیام باید وارد حساب آنلاین خودت شوی.</p>
-  </section>
-  <div class="columns">
-    <section class="panel" id="music">
-      <div class="section-head"><div><h2>♫ موسیقی‌های گروه</h2><div class="sub">آهنگ موردنظرت رو جست‌وجو کن و پخش کن.</div></div><button class="btn ghost admin-only hidden" id="uploadBtn">＋ افزودن آهنگ</button></div>
-      <div class="search"><input id="songSearch" placeholder="جست‌وجوی نام آهنگ..."></div>
-      <div class="tracks" id="trackList"></div>
-      <p class="notice">توجه: این فایل HTML به‌تنهایی فضای ذخیره‌سازی آنلاین ندارد. برای اینکه تغییرات و آهنگ‌ها برای همه بازدیدکننده‌ها نمایش داده شوند، باید به Firebase یا یک سرور متصل شود.</p>
-    </section>
-    <aside>
-      <section class="panel side-card">
-        <h2>♬ تازه‌های گروه</h2>
-        <div class="news-item">به صفحه رسمی طرفدارهای TEEN MONSTER خوش اومدی!</div>
-        <div class="news-item">آهنگ‌های جدیدت رو از بخش موسیقی اضافه کن.</div>
-        <div class="news-item">پروفایل اعضا رو باز کن و گفت‌وگو رو شروع کن.</div><div class="news-item">مدیریت رمز و ویرایش پروفایل در این نسخه روی همین مرورگر انجام می‌شود؛ همگام‌سازی عمومی به بک‌اند آنلاین نیاز دارد.</div>
-      </section>
-      <section class="panel side-card" id="contact">
-        <h2>✉ ارتباط با ما</h2>
-        <p class="sub">برای خبرهای تازه و برنامه‌های گروه، شبکه‌های اجتماعی‌تون رو اینجا قرار بدید.</p>
-        <a class="btn ghost" href="https://rubika.ir/TEEN_MONSTER_2026" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-decoration:none">💜 ورود به روبیکای TEEN MONSTER (@TEEN_MONSTER_2026)</a>
-      </section>
-    </aside>
+<header>
+  <div class="topbar">
+    <div class="logo">👑 TEEN MONSTER</div>
+    <nav>
+      <button onclick="showPage('home')">خانه</button>
+      <button onclick="showPage('music')">موسیقی</button>
+      <button onclick="showPage('members')">اعضا</button>
+      <button onclick="showPage('chat')">چت</button>
+      <button onclick="showPage('profile')">پروفایل</button>
+      <button onclick="showPage('auth')">ورود</button>
+      <button id="adminNav" class="hidden" onclick="showPage('admin')">مدیریت</button>
+    </nav>
   </div>
-  <footer class="footer"><span class="logo" style="font-size:18px">TEEN MONSTER</span><span>با موسیقی کنار همیم ♡</span><span>© TEEN MONSTER</span></footer>
+</header>
+<main>
+<!-- HOME -->
+<section id="home" class="page active">
+  <div class="hero">
+    <span class="badge">WELCOME TO OUR DARK KINGDOM</span>
+    <h1 id="heroTitle">TEEN MONSTER</h1>
+    <p id="heroDescription">
+      به قلمرو هیولاها خوش آمدی؛ جایی برای موسیقی، دوستی،
+      خلاقیت و ساختن خاطراتی فراموش‌نشدنی.
+    </p>
+    <button onclick="showPage('music')">🎵 ورود به کتابخانه موسیقی</button>
+    <button class="secondary" onclick="showPage('members')">👑 آشنایی با اعضا</button>
+  </div>
+  <h2 class="section-title">✦ قلمرو ما</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>🎵 Music Realm</h3>
+      <p class="muted">آهنگ‌های موردعلاقه‌ات را پیدا کن و گوش بده.</p>
+      <button onclick="showPage('music')">مشاهده موسیقی</button>
+    </div>
+    <div class="card">
+      <h3>👑 Royal Members</h3>
+      <p class="muted">با اعضای اصلی قلمرو آشنا شو.</p>
+      <button onclick="showPage('members')">مشاهده اعضا</button>
+    </div>
+    <div class="card">
+      <h3>💬 Dark Chat</h3>
+      <p class="muted">با حساب کاربری وارد شو و در گفت‌وگو شرکت کن.</p>
+      <button onclick="showPage('chat')">ورود به چت</button>
+    </div>
+  </div>
+</section>
+<!-- AUTH -->
+<section id="auth" class="page">
+  <div class="card form-card">
+    <h2>🖤 ورود به قلمرو</h2>
+    <p class="muted">با حساب کاربری خودت وارد شو.</p>
+    <form id="loginForm">
+      <label for="loginEmail">ایمیل</label>
+      <input id="loginEmail" type="email" required autocomplete="email">
+      <label for="loginPassword">رمز عبور</label>
+      <input id="loginPassword" type="password" required autocomplete="current-password">
+      <button type="submit">ورود</button>
+    </form>
+    <hr>
+    <h3>ساخت حساب جدید</h3>
+    <form id="signupForm">
+      <label for="signupName">نام نمایشی</label>
+      <input id="signupName" maxlength="40" required>
+      <label for="signupEmail">ایمیل</label>
+      <input id="signupEmail" type="email" required autocomplete="email">
+      <label for="signupPassword">رمز عبور (حداقل ۸ کاراکتر)</label>
+      <input id="signupPassword" type="password" minlength="8" required autocomplete="new-password">
+      <button type="submit">ثبت‌نام</button>
+    </form>
+    <div id="authStatus" class="notice hidden"></div>
+  </div>
+</section>
+<!-- PROFILE -->
+<section id="profile" class="page">
+  <div class="card">
+    <h2>👤 پروفایل من</h2>
+    <p id="profileStatus" class="muted">برای مشاهده پروفایل وارد شو.</p>
+    <form id="profileForm" class="hidden">
+      <label for="profileName">نام نمایشی</label>
+      <input id="profileName" maxlength="40" required>
+      <label for="profileAvatar">آدرس تصویر پروفایل (اختیاری)</label>
+      <input id="profileAvatar" type="url" placeholder="https://example.com/avatar.jpg">
+      <button type="submit">ذخیره پروفایل</button>
+    </form>
+    <hr>
+    <h3>تغییر رمز عبور</h3>
+    <form id="passwordForm">
+      <label for="currentPassword">رمز فعلی</label>
+      <input id="currentPassword" type="password" required autocomplete="current-password">
+      <label for="newPassword">رمز جدید</label>
+      <input id="newPassword" type="password" minlength="8" required autocomplete="new-password">
+      <button type="submit">تغییر رمز</button>
+    </form>
+    <button class="danger" onclick="logout()">خروج از حساب</button>
+    <div id="profileStatusMessage" class="notice hidden"></div>
+  </div>
+</section>
+<!-- MUSIC -->
+<section id="music" class="page">
+  <h2 class="section-title">🎵 کتابخانه موسیقی</h2>
+  <p class="muted">آهنگ‌های اضافه‌شده در پایگاه داده اینجا نمایش داده می‌شوند.</p>
+  <div id="musicList" class="card">در حال بارگذاری...</div>
+</section>
+<!-- MEMBERS -->
+<section id="members" class="page">
+  <h2 class="section-title">👑 اعضای اصلی</h2>
+  <p class="muted">اعضای معرفی‌شده توسط مدیریت سایت.</p>
+  <div id="membersList" class="grid"></div>
+</section>
+<!-- CHAT -->
+<section id="chat" class="page">
+  <h2 class="section-title">💬 Dark Chat</h2>
+  <div class="card">
+    <div id="chatBox" class="chat-box" aria-live="polite"></div>
+    <form id="chatForm">
+      <label for="chatInput">پیام تو</label>
+      <textarea id="chatInput" maxlength="1000" rows="3"
+        placeholder="پیامت را بنویس..." required></textarea>
+      <button type="submit">ارسال پیام</button>
+    </form>
+    <p id="chatStatus" class="muted"></p>
+  </div>
+</section>
+<!-- ADMIN -->
+<section id="admin" class="page">
+  <h2 class="section-title">⚙️ پنل مدیریت</h2>
+  <div id="adminGate" class="notice">
+    برای دسترسی به این بخش باید وارد حساب مدیر مجاز شده باشی.
+  </div>
+  <div id="adminPanel" class="hidden">
+    <div class="card">
+      <h3>🖤 تنظیمات سایت</h3>
+      <form id="settingsForm">
+        <label for="settingTitle">عنوان سایت</label>
+        <input id="settingTitle" maxlength="100" required>
+        <label for="settingDescription">معرفی سایت</label>
+        <textarea id="settingDescription" maxlength="1000" required></textarea>
+        <label for="settingImage">آدرس تصویر اصلی (اختیاری)</label>
+        <input id="settingImage" type="url" placeholder="https://example.com/banner.jpg">
+        <button type="submit">ذخیره تنظیمات</button>
+      </form>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h3>🎵 افزودن آهنگ</h3>
+      <form id="musicForm">
+        <label for="musicTitle">نام آهنگ</label>
+        <input id="musicTitle" maxlength="150" required>
+        <label for="musicArtist">نام هنرمند</label>
+        <input id="musicArtist" maxlength="150" required>
+        <label for="musicUrl">آدرس HTTPS فایل صوتی</label>
+        <input id="musicUrl" type="url" placeholder="https://example.com/song.mp3" required>
+        <button type="submit">افزودن آهنگ</button>
+      </form>
+      <div id="adminMusicList"></div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h3>👑 افزودن عضو</h3>
+      <form id="memberForm">
+        <label for="memberName">نام عضو</label>
+        <input id="memberName" maxlength="100" required>
+        <label for="memberRole">نقش</label>
+        <input id="memberRole" maxlength="100" required>
+        <label for="memberImage">آدرس تصویر (اختیاری)</label>
+        <input id="memberImage" type="url">
+        <button type="submit">افزودن عضو</button>
+      </form>
+      <div id="adminMembersList"></div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h3>💬 مدیریت پیام‌های چت</h3>
+      <p class="muted">مدیر مجاز می‌تواند پیام‌های نامناسب را حذف کند.</p>
+      <div id="adminChatList"></div>
+    </div>
+  </div>
+</section>
 </main>
-<div class="player">
-  <div class="cover">♫</div><div class="track-info"><b id="nowTitle">هنوز آهنگی انتخاب نشده</b><small id="nowArtist">TEEN MONSTER</small></div>
-  <audio id="audioPlayer" controls preload="metadata"></audio>
-</div>
-
-<div class="modal-bg" id="memberModal"><div class="modal">
-  <div class="modal-head"><div><h2 id="memberTitle">پروفایل عضو</h2><div class="sub" id="memberRole"></div></div><button class="close" data-close="memberModal">×</button></div>
-  <div id="memberBio" style="line-height:2;color:#e7d9f7;margin:14px 0"></div>
-  <p class="notice">این بخش گفت‌وگوی نمایشی است؛ پیام‌ها فقط در همین مرورگر می‌مانند.</p>
-  <div class="chatbox" id="chatBox"></div>
-  <form class="search" id="chatForm"><input id="chatInput" placeholder="پیامت رو بنویس..." required><button class="btn">ارسال</button></form>
-</div></div>
-<div class="modal-bg" id="editMemberModal"><div class="modal">
-  <div class="modal-head"><h2>ویرایش عضو گروه</h2><button class="close" data-close="editMemberModal">×</button></div>
-  <form class="form" id="editMemberForm">
-    <input type="hidden" id="editMemberIndex">
-    <input class="field" id="editMemberName" placeholder="اسم عضو" required maxlength="50">
-    <textarea class="field" id="editMemberBio" placeholder="درباره این عضو بنویس..." rows="5" required></textarea>
-    <button class="btn" type="submit">ذخیره تغییرات</button>
-  </form>
-</div></div>
-<div class="modal-bg" id="accountModal"><div class="modal">
-  <div class="modal-head"><h2>حساب طرفداری</h2><button class="close" data-close="accountModal">×</button></div>
-  <p class="notice">طرفدارها می‌توانند حساب نمایشی بسازند؛ افزودن آهنگ و عکس فقط برای مدیر سایت فعال است.</p>
-  <form class="form" id="accountForm"><input class="field" id="username" placeholder="نام نمایشی" required maxlength="30"><input class="field" id="email" type="email" placeholder="ایمیل (برای حساب آنلاین لازم است)" required><input class="field" id="password" type="password" placeholder="رمز عبور (حداقل ۶ کاراکتر)" minlength="6" required><button class="btn" type="submit">ساخت حساب طرفداری</button><button class="btn ghost" type="button" id="loginUserBtn">ورود به حساب قبلی</button></form>
-  <hr style="border-color:#332044;margin:20px 0"><h3>ورود مدیر سایت</h3><form class="form" id="adminForm"><input class="field" id="adminPassword" type="password" placeholder="رمز مدیر" required><button class="btn">ورود مدیر</button></form><button class="btn ghost" type="button" id="changeAdminPasswordBtn" style="margin-top:10px">تغییر رمز مدیر</button><button class="btn ghost" type="button" id="adminLogoutBtn" style="margin-top:10px">خروج از حساب مدیر</button>
-  <div id="changeAdminPasswordPanel" style="display:none;margin-top:18px;padding:16px;border:1px solid #7c3aed;border-radius:14px">
-  <h3>تغییر رمز مدیر</h3>
-  <form class="form" id="changeAdminPasswordForm">
-    <input class="field" id="oldAdminPassword" type="password" placeholder="رمز فعلی مدیر" required>
-    <input class="field" id="newAdminPassword" type="password" placeholder="رمز جدید (حداقل ۸ کاراکتر)" minlength="8" required>
-    <input class="field" id="confirmAdminPassword" type="password" placeholder="تکرار رمز جدید" minlength="8" required>
-    <button class="btn" type="submit">ذخیره رمز جدید</button>
-    <button class="btn ghost" type="button" id="cancelAdminPasswordChange">انصراف</button>
-  </form>
-  <p class="notice">این تغییر فقط در همین مرورگر ذخیره می‌شود؛ برای تغییر رمز مدیر در همه دستگاه‌ها، سایت باید به سیستم ورود آنلاین متصل باشد.</p>
-</div>
-<div id="userDashboard" style="display:none;margin-top:18px;padding:18px;border:1px solid #7c3aed;border-radius:16px;background:#160d22"><h3>حساب کاربری من</h3><p id="dashboardName"></p><p id="dashboardEmail" class="sub"></p><button class="btn ghost" type="button" id="editMyProfileBtn">ویرایش پروفایل من</button><button class="btn ghost" type="button" id="userLogoutBtn">خروج از حساب</button></div><p id="accountStatus" class="sub"></p>
-</div></div>
-<div class="modal-bg" id="uploadModal"><div class="modal">
-  <div class="modal-head"><h2>افزودن آهنگ جدید</h2><button class="close" data-close="uploadModal">×</button></div>
-  <form class="form" id="uploadForm"><input class="field" id="songTitle" placeholder="نام آهنگ" required><input class="field" id="songFile" type="file" accept="audio/*" required><button class="btn">افزودن به فهرست</button></form>
-  <p class="notice">برای انتشار واقعی آهنگ‌ها برای همه بازدیدکننده‌ها، باید Firebase Storage یا فضای ذخیره‌سازی آنلاین متصل و تنظیم شود. در نسخه‌ی HTML تنها، فایل‌ها بین دستگاه‌ها به اشتراک گذاشته نمی‌شوند.</p>
-</div></div>
+<footer>
+  <div>👑 TEEN MONSTER</div>
+  <p>قلمرو موسیقی، دوستی و خلاقیت 🖤💜</p>
+</footer>
+<!-- Supabase SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const members=[
- {name:"اسم عضو ۱",role:"عضو گروه TEEN MONSTER",emoji:"🎤",bio:"اینجا درباره عضو اول بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
- {name:"اسم عضو ۲",role:"عضو گروه TEEN MONSTER",emoji:"🎸",bio:"اینجا درباره عضو دوم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
- {name:"اسم عضو ۳",role:"عضو گروه TEEN MONSTER",emoji:"🎧",bio:"اینجا درباره عضو سوم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
- {name:"اسم عضو ۴",role:"عضو گروه TEEN MONSTER",emoji:"🥁",bio:"اینجا درباره عضو چهارم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
- {name:"اسم عضو ۵",role:"عضو گروه TEEN MONSTER",emoji:"🎼",bio:"اینجا درباره عضو پنجم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
- {name:"اسم عضو ۶",role:"عضو گروه TEEN MONSTER",emoji:"🎹",bio:"اینجا درباره عضو ششم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
- {name:"اسم عضو ۷",role:"عضو گروه TEEN MONSTER",emoji:"🎵",bio:"اینجا درباره عضو هفتم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."}
-];
-let songs=JSON.parse(localStorage.getItem("tm_songs")||"[]");
-let activeMember=null;
-const $=id=>document.getElementById(id);
-function getMemberPhotos(){try{return JSON.parse(localStorage.getItem("tm_member_photos")||"{}")}catch(e){return {}}}
-function renderMembers(){
- const photos=getMemberPhotos();
- $("membersGrid").innerHTML=members.map((m,i)=>`<article class="member"><button style="display:block;width:100%;padding:0;background:none;border:0;color:white;text-align:right" data-member="${i}"><div class="portrait">${photos[i]?`<img src="${photos[i]}" alt="${escapeHtml(m.name)}">`:m.emoji}</div><div class="member-info"><b>${m.name}</b><span>${m.role} · مشاهده پروفایل و پیام ↗</span></div></button>${isAdmin?`<div class="member-tools"><label>＋ افزودن/تغییر عکس<input type="file" accept="image/*" data-photo="${i}"></label><button type="button" class="btn ghost" style="padding:6px 8px;font-size:11px;margin:5px 0" data-edit-member="${i}">✎ تغییر اسم و بیو</button></div>`:""}</article>`).join("");
+/*
+  قبل از استفاده:
+  این دو مقدار را از Project Settings > API در Supabase بردار.
+  فقط کلید عمومی (publishable یا anon) را وارد کن.
+  هرگز service_role یا secret key را در مرورگر قرار نده.
+*/
+const SUPABASE_URL = "tttffiyxqxphixryjavq";
+const SUPABASE_PUBLIC_KEY = "sb_publishable_WetuCjAtn1DCom1pOF3SKw_fxMbJdr_";
+let db = null;
+let currentUser = null;
+let isAdmin = false;
+let chatSubscription = null;
+const $ = id => document.getElementById(id);
+function message(id, text) {
+  const el = $(id);
+  el.textContent = text;
+  el.classList.remove("hidden");
 }
-function renderSongs(){
- const q=$("songSearch").value.trim().toLowerCase();
- const filtered=songs.filter(s=>s.title.toLowerCase().includes(q));
- $("trackList").innerHTML=filtered.length?filtered.map(s=>`<div class="track"><div class="cover">♫</div><div class="track-info"><b>${escapeHtml(s.title)}</b><small>TEEN MONSTER</small></div><button aria-label="پخش" data-play="${s.id}">▶</button></div>`).join(""):'<div class="empty">هنوز آهنگی اضافه نشده؛ از «افزودن آهنگ» شروع کن.</div>';
+function hideMessage(id) {
+  $(id).classList.add("hidden");
 }
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function openModal(id){$(id).classList.add("show")}function closeModal(id){$(id).classList.remove("show")}
-function setSong(s){$("audioPlayer").src=s.url;$("nowTitle").textContent=s.title;$("nowArtist").textContent="TEEN MONSTER";$("audioPlayer").play().catch(()=>{});}
-$("membersGrid").addEventListener("click",e=>{if(e.target.closest("label")||e.target.matches("input"))return;const b=e.target.closest("[data-member]");if(!b)return;activeMember=members[+b.dataset.member];$("memberTitle").textContent=activeMember.name;$("memberRole").textContent=activeMember.role;$("memberBio").textContent=activeMember.bio;$("chatBox").innerHTML='<div class="bubble">سلام! به صفحه‌ی من خوش اومدی 👋</div>';openModal("memberModal");});
-$("membersGrid").addEventListener("click",e=>{const btn=e.target.closest("[data-edit-member]");if(!btn)return;if(!isAdmin){alert("فقط مدیر سایت می‌تواند اطلاعات اعضا را تغییر دهد.");return;}const i=Number(btn.dataset.editMember),m=members[i];$("editMemberIndex").value=i;$("editMemberName").value=m.name;$("editMemberBio").value=m.bio;openModal("editMemberModal");});
-$("editMemberForm").addEventListener("submit",e=>{e.preventDefault();if(!isAdmin)return;const i=Number($("editMemberIndex").value);members[i].name=$("editMemberName").value.trim();members[i].bio=$("editMemberBio").value.trim();try{localStorage.setItem("tm_members_data",JSON.stringify(members));}catch(err){}renderMembers();closeModal("editMemberModal");});
-$("membersGrid").addEventListener("change",e=>{const input=e.target.closest("[data-photo]");if(!isAdmin||!input||!input.files[0])return;const file=input.files[0];if(!file.type.startsWith("image/")){alert("لطفاً یک فایل عکس انتخاب کن.");return;}if(file.size>1.5*1024*1024){alert("حجم عکس باید کمتر از ۱.۵ مگابایت باشد.");return;}const reader=new FileReader();reader.onload=()=>{const photos=getMemberPhotos();photos[input.dataset.photo]=reader.result;try{localStorage.setItem("tm_member_photos",JSON.stringify(photos));renderMembers();}catch(err){alert("فضای ذخیره‌سازی مرورگر پر شده؛ یک عکس کوچک‌تر انتخاب کن.");}};reader.readAsDataURL(file);});
-$("trackList").addEventListener("click",e=>{const b=e.target.closest("[data-play]");if(!b)return;const s=songs.find(x=>x.id===b.dataset.play);if(s)setSong(s);});
-$("songSearch").addEventListener("input",renderSongs);
-$("accountBtn").addEventListener("click",()=>{
- const current=localStorage.getItem("tm_demo_user");
- openModal("accountModal");
- if(current) showUserDashboard(current); else resetAccountView();
-});
-$("uploadBtn").onclick=()=>openModal("uploadModal");
-document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
-document.querySelectorAll(".modal-bg").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
-$("chatForm").addEventListener("submit",e=>{e.preventDefault();const v=$("chatInput").value.trim();if(!v)return;$("chatBox").insertAdjacentHTML("beforeend",`<div class="bubble me">${escapeHtml(v)}</div><div class="bubble">پیامت در نسخه‌ی نمایشی ثبت شد. برای گفت‌وگوی واقعی، سایت به سرور نیاز دارد.</div>`);$("chatInput").value="";$("chatBox").scrollTop=$("chatBox").scrollHeight;});
-let isAdmin=localStorage.getItem("tm_is_admin")==="yes";
-const DEFAULT_ADMIN_PASSWORD="TM-ADMIN-2026";
-function updateAdminUI(){document.querySelectorAll(".admin-only").forEach(el=>el.classList.toggle("hidden",!isAdmin));$("adminBadge").textContent=isAdmin?"✓ مدیر وارد شده":"افزودن محتوا فقط برای مدیر";$("uploadBtn").classList.toggle("hidden",!isAdmin);renderMembers();}
-$("adminLogoutBtn").addEventListener("click",()=>{isAdmin=false;localStorage.removeItem("tm_is_admin");updateAdminUI();$("accountStatus").textContent="از حساب مدیر خارج شدی.";});
-$("adminForm").addEventListener("submit",e=>{e.preventDefault();const pass=$("adminPassword").value;if(pass===(localStorage.getItem("tm_admin_password")||DEFAULT_ADMIN_PASSWORD)){isAdmin=true;localStorage.setItem("tm_is_admin","yes");updateAdminUI();$("accountStatus").textContent="ورود مدیر موفق بود؛ حالا می‌توانی اسم‌ها، توضیحات، عکس‌ها و آهنگ‌ها را تغییر بدهی."; $("adminPassword").value="";closeModal("accountModal");}else{$("accountStatus").textContent="رمز مدیر اشتباه است."; }});
-function readDemoUsers(){try{return JSON.parse(localStorage.getItem("tm_demo_users")||"{}")}catch(err){return {};}}
-
-$("changeAdminPasswordBtn").addEventListener("click",()=>{
-  if(!isAdmin){
-    $("accountStatus").textContent="برای تغییر رمز، ابتدا از بخش «ورود مدیر سایت» وارد شو.";
+function showPage(id) {
+  if (id === "admin" && !isAdmin) {
+    alert("این بخش فقط برای مدیر مجاز است.");
     return;
   }
-  $("changeAdminPasswordPanel").style.display="block";
-  $("oldAdminPassword").value="";
-  $("newAdminPassword").value="";
-  $("confirmAdminPassword").value="";
-});
-$("cancelAdminPasswordChange").addEventListener("click",()=>{
-  $("changeAdminPasswordPanel").style.display="none";
-  $("changeAdminPasswordForm").reset();
-});
-$("changeAdminPasswordForm").addEventListener("submit",e=>{
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  $(id).classList.add("active");
+  if (id === "music") loadMusic();
+  if (id === "members") loadMembers();
+  if (id === "chat") loadChat();
+  if (id === "profile") renderProfile();
+  if (id === "admin" && isAdmin) loadAdmin();
+}
+function safeHttpUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.href : null;
+  } catch {
+    return null;
+  }
+}
+function make(tag, className, text) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  if (text !== undefined) el.textContent = text;
+  return el;
+}
+function addText(parent, tag, text, className = "") {
+  const el = make(tag, className, text);
+  parent.appendChild(el);
+  return el;
+}
+async function requireDb() {
+  if (!db) throw new Error("اتصال Supabase هنوز تنظیم نشده است.");
+  return db;
+}
+function checkConfig() {
+  if (!SUPABASE_URL.startsWith("https://") ||
+      SUPABASE_PUBLIC_KEY.startsWith("YOUR_")) {
+    console.warn("برای فعال شدن امکانات آنلاین، تنظیمات Supabase را وارد کن.");
+    $("musicList").textContent =
+      "برای نمایش آهنگ‌ها ابتدا SUPABASE_URL و SUPABASE_PUBLIC_KEY را تنظیم کن.";
+    $("membersList").textContent =
+      "برای نمایش اعضا ابتدا اتصال Supabase را تنظیم کن.";
+    $("chatBox").textContent =
+      "برای فعال شدن چت، اتصال Supabase را تنظیم کن.";
+    return false;
+  }
+  db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY);
+  return true;
+}
+async function refreshSession() {
+  if (!db) return;
+  const { data, error } = await db.auth.getSession();
+  if (error) console.error(error);
+  currentUser = data?.session?.user || null;
+  await refreshAdmin();
+  updateNavigation();
+  renderProfile();
+}
+async function refreshAdmin() {
+  isAdmin = false;
+  if (!db || !currentUser) return;
+  const { data, error } = await db.rpc("is_admin");
+  if (!error) isAdmin = data === true;
+}
+function updateNavigation() {
+  $("adminNav").classList.toggle("hidden", !isAdmin);
+}
+async function renderProfile() {
+  if (!currentUser) {
+    $("profileStatus").textContent = "برای مشاهده و ویرایش پروفایل وارد شو.";
+    $("profileForm").classList.add("hidden");
+    return;
+  }
+  $("profileForm").classList.remove("hidden");
+  $("profileName").value = currentUser.user_metadata?.display_name || "";
+  $("profileAvatar").value = currentUser.user_metadata?.avatar_url || "";
+  $("profileStatus").textContent = "ایمیل حساب: " + currentUser.email;
+}
+$("signupForm").addEventListener("submit", async e => {
   e.preventDefault();
-  if(!isAdmin){alert("ابتدا به‌عنوان مدیر وارد شو.");return;}
-  const oldPass=$("oldAdminPassword").value;
-  const next=$("newAdminPassword").value;
-  const confirmPass=$("confirmAdminPassword").value;
-  const currentPass=localStorage.getItem("tm_admin_password")||DEFAULT_ADMIN_PASSWORD;
-  if(oldPass!==currentPass){alert("رمز فعلی مدیر درست نیست.");return;}
-  if(next.trim().length<8){alert("رمز جدید باید حداقل ۸ کاراکتر باشد.");return;}
-  if(next!==confirmPass){alert("رمز جدید و تکرار آن یکسان نیستند.");return;}
-  localStorage.setItem("tm_admin_password",next);
-  $("changeAdminPasswordPanel").style.display="none";
-  $("changeAdminPasswordForm").reset();
-  $("accountStatus").textContent="رمز مدیر با موفقیت در همین مرورگر تغییر کرد.";
-  alert("رمز مدیر ذخیره شد. دفعه بعد در همین مرورگر از رمز جدید استفاده کن.");
+  try {
+    await requireDb();
+    const displayName = $("signupName").value.trim();
+    const email = $("signupEmail").value.trim();
+    const password = $("signupPassword").value;
+    const { data, error } = await db.auth.signUp({
+      email,
+      password,
+      options: { data: { display_name: displayName } }
+    });
+    if (error) throw error;
+    if (data.session) {
+      currentUser = data.user;
+      await refreshAdmin();
+      updateNavigation();
+      renderProfile();
+    }
+    message("authStatus",
+      "درخواست ثبت‌نام ارسال شد. اگر تأیید ایمیل فعال است، صندوق ایمیلت را بررسی کن.");
+  } catch (err) {
+    message("authStatus", "خطا در ثبت‌نام: " + err.message);
+  }
 });
-$("editMyProfileBtn").addEventListener("click",()=>{
-  const current=localStorage.getItem("tm_demo_user");
-  if(!current){alert("ابتدا وارد حساب طرفداری شو.");return;}
-  const users=readDemoUsers();
-  const entry=Object.values(users).find(u=>u.name===current);
-  if(!entry){alert("اطلاعات حساب پیدا نشد.");return;}
-  const nextName=prompt("نام نمایشی جدید:",entry.name);
-  if(nextName===null)return;
-  if(!nextName.trim()){alert("نام نمایشی نمی‌تواند خالی باشد.");return;}
-  const nextEmail=prompt("ایمیل جدید (اختیاری):",entry.email||"");
-  if(nextEmail===null)return;
-  const key=Object.keys(users).find(k=>users[k]===entry);
-  entry.name=nextName.trim(); entry.email=nextEmail.trim();
-  if(key)users[key]=entry;
-  localStorage.setItem("tm_demo_users",JSON.stringify(users));
-  localStorage.setItem("tm_demo_user",entry.name);
-  showUserDashboard(entry.name);
-  alert("پروفایل در همین مرورگر به‌روزرسانی شد. برای نمایش عمومی و همگام‌سازی بین دستگاه‌ها، سایت باید به پایگاه داده آنلاین وصل شود.");
+$("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  try {
+    await requireDb();
+    const { data, error } = await db.auth.signInWithPassword({
+      email: $("loginEmail").value.trim(),
+      password: $("loginPassword").value
+    });
+    if (error) throw error;
+    currentUser = data.user;
+    await refreshAdmin();
+    updateNavigation();
+    renderProfile();
+    message("authStatus", "ورود با موفقیت انجام شد.");
+    showPage("home");
+  } catch (err) {
+    message("authStatus", "خطا در ورود: " + err.message);
+  }
 });
-
-// Supabase Auth setup. Replace the placeholder below with the project's publishable/anon key.
-const SUPABASE_URL = "https://ttffiyxqxphixryjavq.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_WetuCjAtn1DCom1pOF3SKw_fxMbJdr_";
-const supabaseReady = !!(window.supabase && SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_"));
-const supabaseClient = supabaseReady ? window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY) : null;
-function accountKey(){return $("email").value.trim().toLowerCase();}
-function showUserDashboard(name,email=""){
- $("accountForm").style.display="none";
- $("userDashboard").style.display="block";
- $("dashboardName").textContent="نام کاربری: "+name;
- $("dashboardEmail").textContent="ایمیل: "+(email||"ثبت نشده");
- $("accountBtn").textContent=name; $("accountBtn").setAttribute("aria-label","حساب کاربری "+name);
-}
-function setSignedIn(name,email=""){
- localStorage.setItem("tm_demo_user",name);
- showUserDashboard(name,email);
-}
-function resetAccountView(){
- $("accountForm").style.display="flex";
- $("userDashboard").style.display="none";
- $("accountStatus").textContent="";
-}
-function authErrorMessage(error){
- const msg=(error&&error.message)||"خطای ناشناخته";
- if(msg.toLowerCase().includes("invalid login credentials")) return "ایمیل یا رمز عبور درست نیست.";
- if(msg.toLowerCase().includes("email not confirmed")) return "ابتدا ایمیلت را از لینک تأیید ایمیل تأیید کن، سپس وارد شو.";
- if(msg.toLowerCase().includes("user already registered")) return "این ایمیل قبلاً ثبت‌نام کرده؛ از دکمهٔ ورود استفاده کن.";
- return "خطا: "+msg;
-}
-$("userLogoutBtn").addEventListener("click",async()=>{
- if(supabaseClient) await supabaseClient.auth.signOut();
- localStorage.removeItem("tm_demo_user"); $("accountBtn").textContent="ورود / ثبت‌نام"; resetAccountView();
-});
-$("accountForm").addEventListener("submit",async e=>{
- e.preventDefault();
- const n=$("username").value.trim(),email=$("email").value.trim().toLowerCase(),password=$("password").value;
- if(!n){$("accountStatus").textContent="لطفاً نام نمایشی وارد کن.";return;}
- if(!email){$("accountStatus").textContent="برای ساخت حساب آنلاین باید ایمیل وارد کنی.";return;}
- if(password.length<6){$("accountStatus").textContent="رمز عبور باید حداقل ۶ کاراکتر باشد.";return;}
- if(!supabaseClient){$("accountStatus").textContent="اتصال Supabase هنوز تنظیم نشده است؛ کلید عمومی پروژه را در کد قرار بده.";return;}
- $("accountStatus").textContent="در حال ساخت حساب آنلاین…";
- const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{display_name:n}}});
- if(error){$("accountStatus").textContent=authErrorMessage(error);return;}
- if(data.session){setSignedIn(n,email);$("accountStatus").textContent="حساب آنلاین ساخته شد و وارد شدی.";}
- else {$("accountStatus").textContent="درخواست ثبت‌نام ارسال شد. ایمیلت را برای لینک تأیید بررسی کن؛ بعد از تأیید از دکمهٔ ورود استفاده کن.";}
-});
-$("loginUserBtn").addEventListener("click",async()=>{
- const email=$("email").value.trim().toLowerCase(),password=$("password").value;
- if(!email||!password){$("accountStatus").textContent="ایمیل و رمز عبور را وارد کن.";return;}
- if(!supabaseClient){$("accountStatus").textContent="اتصال Supabase هنوز تنظیم نشده است؛ کلید عمومی پروژه را در کد قرار بده.";return;}
- $("accountStatus").textContent="در حال ورود…";
- const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
- if(error){$("accountStatus").textContent=authErrorMessage(error);return;}
- const name=data.user.user_metadata?.display_name||email.split("@")[0];
- setSignedIn(name,email);$("accountStatus").textContent="با موفقیت وارد شدی.";
-});
-if(supabaseClient){
- supabaseClient.auth.getSession().then(({data})=>{const user=data.session?.user;if(user){const name=user.user_metadata?.display_name||user.email?.split("@")[0]||"طرفدار";setSignedIn(name,user.email||"");}});
- supabaseClient.auth.onAuthStateChange((_event,session)=>{if(!session){localStorage.removeItem("tm_demo_user");}});
-}
-// چت عمومی آنلاین با Supabase؛ برای فعال شدن، کلید عمومی پروژه را بالا وارد و SQL راهنما را اجرا کن.
-const chatMessagesEl = $("publicChatMessages");
-const chatStatusEl = $("publicChatStatus");
-const chatConnectionEl = $("chatConnection");
-const chatForm = $("publicChatForm");
-const chatInput = $("publicChatInput");
-let chatUser = null;
-let chatChannel = null;
-function chatEscape(value){return String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "'":"&#39;"}[ch]));}
-function showChatMessages(rows){
-  if(!rows || !rows.length){chatMessagesEl.innerHTML='<div class="empty">هنوز پیامی نیست؛ اولین پیام رو تو بفرست! 💜</div>';return;}
-  chatMessagesEl.innerHTML=rows.map(m=>`<div class="chat-message ${chatUser && m.user_id===chatUser.id?'mine':''}"><div class="chat-meta"><b>${chatEscape(m.display_name||'طرفدار')}</b><span>${chatEscape(new Date(m.created_at).toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'}))}</span></div><div class="chat-text">${chatEscape(m.message)}</div></div>`).join('');
-  chatMessagesEl.scrollTop=chatMessagesEl.scrollHeight;
-}
-async function loadPublicChat(){
-  if(!supabaseClient){chatConnectionEl.textContent='اتصال تنظیم نشده';chatMessagesEl.innerHTML='<div class="empty">برای فعال‌کردن چت، کلید عمومی Supabase را در کد سایت وارد کن و SQL چت را در Supabase اجرا کن.</div>';chatStatusEl.textContent='هنوز اتصال Supabase کامل تنظیم نشده است.';return;}
-  const {data:sessionData}=await supabaseClient.auth.getSession();
-  chatUser=sessionData.session?.user||null;
-  chatStatusEl.textContent=chatUser?'وارد شده‌ای؛ پیام‌ها برای همه اعضای اتاق عمومی قابل مشاهده‌اند.':'برای ارسال پیام، ابتدا از بخش «ورود / ثبت‌نام» وارد حساب آنلاین شو.';
-  chatInput.disabled=!chatUser;
-  chatForm.querySelector('button').disabled=!chatUser;
-  chatConnectionEl.textContent='در حال اتصال به چت…';
-  const {data,error}=await supabaseClient.from('public_chat_messages').select('id,user_id,display_name,message,created_at').order('created_at',{ascending:true}).limit(100);
-  if(error){chatConnectionEl.textContent='چت هنوز آماده نیست';chatMessagesEl.innerHTML='<div class="empty">جدول چت یا دسترسی‌های آن تنظیم نشده‌اند. SQL راهنمای کنار فایل را در Supabase اجرا کن.</div>';chatStatusEl.textContent='جزئیات خطا: '+error.message;return;}
-  showChatMessages(data||[]);chatConnectionEl.textContent='🟢 متصل';
-  if(chatChannel) await supabaseClient.removeChannel(chatChannel);
-  chatChannel=supabaseClient.channel('teen-monster-public-chat').on('postgres_changes',{event:'INSERT',schema:'public',table:'public_chat_messages'},payload=>{
-    const row=payload.new;
-    const existing=chatMessagesEl.querySelector(`[data-chat-id="${row.id}"]`);
-    if(existing)return;
-    if(chatMessagesEl.querySelector('.empty'))chatMessagesEl.innerHTML='';
-    const div=document.createElement('div');div.className='chat-message '+(chatUser&&row.user_id===chatUser.id?'mine':'');div.dataset.chatId=row.id;
-    const meta=document.createElement('div');meta.className='chat-meta';const name=document.createElement('b');name.textContent=row.display_name||'طرفدار';const time=document.createElement('span');time.textContent=new Date(row.created_at).toLocaleString('fa-IR',{dateStyle:'short',timeStyle:'short'});meta.append(name,time);
-    const body=document.createElement('div');body.className='chat-text';body.textContent=row.message;div.append(meta,body);chatMessagesEl.append(div);chatMessagesEl.scrollTop=chatMessagesEl.scrollHeight;
-  }).subscribe(status=>{if(status==='SUBSCRIBED')chatConnectionEl.textContent='🟢 چت زنده فعال است';});
-}
-chatForm.addEventListener('submit',async e=>{
-  e.preventDefault();const message=chatInput.value.trim();if(!message)return;
-  if(!supabaseClient){chatStatusEl.textContent='اتصال آنلاین تنظیم نشده است.';return;}
-  const {data}=await supabaseClient.auth.getSession();chatUser=data.session?.user||null;
-  if(!chatUser){chatStatusEl.textContent='برای ارسال پیام اول وارد حساب آنلاین شو.';return;}
-  chatInput.disabled=true;chatForm.querySelector('button').disabled=true;chatStatusEl.textContent='در حال ارسال…';
-  const displayName=String(chatUser.user_metadata?.display_name||chatUser.email?.split('@')[0]||'طرفدار').slice(0,30);
-  const {error}=await supabaseClient.from('public_chat_messages').insert({user_id:chatUser.id,display_name:displayName,message:message.slice(0,500)});
-  chatInput.disabled=false;chatForm.querySelector('button').disabled=false;
-  if(error){chatStatusEl.textContent='پیام ارسال نشد: '+error.message;return;}
-  chatInput.value='';chatStatusEl.textContent='پیامت ارسال شد 💜';
-});
-if(supabaseClient){
-  loadPublicChat();
-  supabaseClient.auth.onAuthStateChange(()=>{setTimeout(loadPublicChat,0);});
-}else{loadPublicChat();}
-
-$("uploadForm").addEventListener("submit",e=>{e.preventDefault();if(!isAdmin){alert("فقط مدیر سایت می‌تواند آهنگ اضافه کند.");return;}const file=$("songFile").files[0],title=$("songTitle").value.trim();if(!file||!title)return;const url=URL.createObjectURL(file);songs.unshift({id:String(Date.now()),title,url});localStorage.setItem("tm_songs",JSON.stringify(songs.map(s=>({id:s.id,title:s.title,url:s.url.startsWith("blob:")?"":s.url}))));renderSongs();setSong(songs[0]);closeModal("uploadModal");$("uploadForm").reset();});
-try{const savedMembers=JSON.parse(localStorage.getItem("tm_members_data")||"null");if(Array.isArray(savedMembers)&&savedMembers.length===members.length){savedMembers.forEach((m,i)=>{if(m.name)members[i].name=m.name;if(m.bio)members[i].bio=m.bio;});}}catch(err){}
-const savedName=localStorage.getItem("tm_demo_user");if(savedName){$("accountBtn").textContent=savedName;$("accountBtn").setAttribute("aria-label","حساب کاربری "+savedName);}
-// انتخاب عکس کنار عنوان اصلی TEEN MONSTER (نمایش و ذخیره فقط در همین مرورگر)
-const heroPhotoInput = $("heroPhotoInput");
-const heroPhotoPreview = $("heroPhotoPreview");
-function showHeroPhoto(dataUrl){
-  heroPhotoPreview.src = dataUrl;
-  heroPhotoPreview.classList.add("visible");
-}
-try {
-  const savedHeroPhoto = localStorage.getItem("tm_hero_photo");
-  if (savedHeroPhoto) showHeroPhoto(savedHeroPhoto);
-} catch (err) {}
-heroPhotoInput.addEventListener("change", () => {
-  const file = heroPhotoInput.files && heroPhotoInput.files[0];
-  if (!file) return;
-  if (!file.type.startsWith("image/")) {
-    alert("لطفاً یک فایل عکس انتخاب کن.");
-    heroPhotoInput.value = "";
+async function logout() {
+  if (!db) return;
+  const { error } = await db.auth.signOut();
+  if (error) {
+    message("profileStatusMessage", error.message);
     return;
   }
-  if (file.size > 2 * 1024 * 1024) {
-    alert("لطفاً عکسی کوچک‌تر از ۲ مگابایت انتخاب کن.");
-    heroPhotoInput.value = "";
+  currentUser = null;
+  isAdmin = false;
+  updateNavigation();
+  renderProfile();
+  showPage("home");
+}
+$("profileForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!currentUser) return message("profileStatusMessage", "ابتدا وارد حساب شو.");
+  const display_name = $("profileName").value.trim();
+  const rawAvatar = $("profileAvatar").value.trim();
+  const avatar_url = rawAvatar ? safeHttpUrl(rawAvatar) : "";
+  if (rawAvatar && !avatar_url) {
+    return message("profileStatusMessage", "آدرس تصویر باید HTTPS باشد.");
+  }
+  const { data, error } = await db.auth.updateUser({
+    data: { display_name, avatar_url }
+  });
+  if (error) return message("profileStatusMessage", error.message);
+  currentUser = data.user;
+  message("profileStatusMessage", "پروفایل ذخیره شد.");
+});
+$("passwordForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!currentUser) return message("profileStatusMessage", "ابتدا وارد حساب شو.");
+  const currentPassword = $("currentPassword").value;
+  const newPassword = $("newPassword").value;
+  if (newPassword.length < 8) {
+    return message("profileStatusMessage", "رمز جدید باید حداقل ۸ کاراکتر باشد.");
+  }
+  try {
+    const { error: reauthError } = await db.auth.signInWithPassword({
+      email: currentUser.email,
+      password: currentPassword
+    });
+    if (reauthError) throw new Error("رمز فعلی صحیح نیست.");
+    const { error } = await db.auth.updateUser({ password: newPassword });
+    if (error) throw error;
+    $("passwordForm").reset();
+    message("profileStatusMessage", "رمز عبور با موفقیت تغییر کرد.");
+  } catch (err) {
+    message("profileStatusMessage", "خطا: " + err.message);
+  }
+});
+async function loadSettings() {
+  if (!db) return;
+  const { data, error } = await db
+    .from("site_settings")
+    .select("setting_key,setting_value");
+  if (error) {
+    console.warn(error.message);
     return;
   }
-  const reader = new FileReader();
-  reader.onload = () => {
-    showHeroPhoto(reader.result);
-    try { localStorage.setItem("tm_hero_photo", reader.result); }
-    catch (err) { alert("عکس نمایش داده شد، اما ذخیره در این مرورگر ممکن نشد."); }
-  };
-  reader.readAsDataURL(file);
+  const settings = Object.fromEntries(
+    (data || []).map(x => [x.setting_key, x.setting_value])
+  );
+  $("heroTitle").textContent = settings.title || "TEEN MONSTER";
+  $("heroDescription").textContent =
+    settings.description ||
+    "به قلمرو هیولاها خوش آمدی؛ جایی برای موسیقی و دوستی.";
+  document.title = $("heroTitle").textContent + " 👑";
+  if (isAdmin) {
+    $("settingTitle").value = settings.title || "TEEN MONSTER";
+    $("settingDescription").value = settings.description || "";
+    $("settingImage").value = settings.image_url || "";
+  }
+}
+async function loadMusic() {
+  if (!db) return;
+  const container = $("musicList");
+  container.replaceChildren(make("p", "muted", "در حال بارگذاری آهنگ‌ها..."));
+  const { data, error } = await db
+    .from("music")
+    .select("id,title,artist,audio_url")
+    .order("created_at", { ascending: false });
+  container.replaceChildren();
+  if (error) {
+    addText(container, "p", "خطا در دریافت موسیقی: " + error.message);
+    return;
+  }
+  if (!data?.length) {
+    addText(container, "p", "هنوز آهنگی اضافه نشده است.", "muted");
+    return;
+  }
+  data.forEach(song => {
+    const row = make("div", "music-row");
+    const info = make("div");
+    addText(info, "strong", song.title);
+    addText(info, "div", song.artist || "هنرمند نامشخص", "muted");
+    row.appendChild(info);
+    const audioUrl = safeHttpUrl(song.audio_url);
+    if (audioUrl) {
+      const audio = make("audio");
+      audio.controls = true;
+      audio.preload = "none";
+      audio.src = audioUrl;
+      row.appendChild(audio);
+    } else {
+      addText(row, "span", "آدرس صوتی نامعتبر است.");
+    }
+    container.appendChild(row);
+  });
+}
+async function loadMembers() {
+  if (!db) return;
+  const container = $("membersList");
+  container.replaceChildren(make("p", "muted", "در حال بارگذاری اعضا..."));
+  const { data, error } = await db
+    .from("members")
+    .select("id,name,role,image_url")
+    .order("created_at", { ascending: false });
+  container.replaceChildren();
+  if (error) {
+    addText(container, "p", "خطا در دریافت اعضا: " + error.message);
+    return;
+  }
+  if (!data?.length) {
+    addText(container, "p", "هنوز عضوی معرفی نشده است.", "muted");
+    return;
+  }
+  data.forEach(member => {
+    const card = make("article", "card");
+    const url = member.image_url ? safeHttpUrl(member.image_url) : null;
+    if (url) {
+      const img = make("img", "avatar");
+      img.src = url;
+      img.alt = "تصویر " + member.name;
+      img.loading = "lazy";
+      img.onerror = () => img.remove();
+      card.appendChild(img);
+    }
+    addText(card, "h3", member.name);
+    addText(card, "p", member.role || "عضو", "muted");
+    container.appendChild(card);
+  });
+}
+async function loadChat() {
+  if (!db) return;
+  if (!currentUser) {
+    $("chatStatus").textContent = "برای ارسال پیام ابتدا وارد حساب شو.";
+  } else {
+    $("chatStatus").textContent = "پیام‌ها را محترمانه ارسال کن.";
+  }
+  await renderChatMessages();
+  if (chatSubscription) {
+    await db.removeChannel(chatSubscription);
+    chatSubscription = null;
+  }
+  chatSubscription = db
+    .channel("public-chat")
+    .on("postgres_changes", {
+      event: "*",
+      schema: "public",
+      table: "chat_messages"
+    }, () => {
+      renderChatMessages();
+      if (isAdmin) loadAdminChat();
+    })
+    .subscribe();
+}
+async function renderChatMessages() {
+  if (!db) return;
+  const box = $("chatBox");
+  const { data, error } = await db
+    .from("chat_messages")
+    .select("id,user_id,display_name,content,created_at")
+    .order("created_at", { ascending: true })
+    .limit(100);
+  box.replaceChildren();
+  if (error) {
+    addText(box, "p", "خطا در دریافت پیام‌ها: " + error.message);
+    return;
+  }
+  (data || []).forEach(item => {
+    const bubble = make("div", "message");
+    const date = item.created_at
+      ? new Date(item.created_at).toLocaleString("fa-IR")
+      : "";
+    addText(bubble, "small",
+      (item.display_name || "عضو") + " · " + date);
+    addText(bubble, "div", item.content);
+    box.appendChild(bubble);
+  });
+  box.scrollTop = box.scrollHeight;
+}
+$("chatForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!currentUser) {
+    return message("chatStatus", "برای ارسال پیام ابتدا وارد حساب شو.");
+  }
+  const content = $("chatInput").value.trim();
+  if (!content) return;
+  const { error } = await db.from("chat_messages").insert({
+    user_id: currentUser.id,
+    display_name: currentUser.user_metadata?.display_name || "عضو",
+    content
+  });
+  if (error) {
+    message("chatStatus", "خطا در ارسال پیام: " + error.message);
+    return;
+  }
+  $("chatInput").value = "";
+  message("chatStatus", "پیام ارسال شد.");
+  await renderChatMessages();
 });
-renderMembers();renderSongs();updateAdminUI();
+async function loadAdmin() {
+  if (!isAdmin) return;
+  $("adminGate").classList.add("hidden");
+  $("adminPanel").classList.remove("hidden");
+  await loadSettings();
+  await loadMusic();
+  await loadMembers();
+  await loadAdminMusic();
+  await loadAdminMembers();
+  await loadAdminChat();
+}
+$("settingsForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!isAdmin) return;
+  const imageInput = $("settingImage").value.trim();
+  const imageUrl = imageInput ? safeHttpUrl(imageInput) : "";
+  if (imageInput && !imageUrl) {
+    return alert("آدرس تصویر باید HTTPS باشد.");
+  }
+  const values = [
+    ["title", $("settingTitle").value.trim()],
+    ["description", $("settingDescription").value.trim()],
+    ["image_url", imageUrl]
+  ];
+  for (const [setting_key, setting_value] of values) {
+    const { error } = await db.from("site_settings").upsert(
+      { setting_key, setting_value },
+      { onConflict: "setting_key" }
+    );
+    if (error) return alert("خطا در ذخیره تنظیمات: " + error.message);
+  }
+  await loadSettings();
+  alert("تنظیمات سایت ذخیره شد.");
+});
+$("musicForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!isAdmin) return;
+  const audioUrl = safeHttpUrl($("musicUrl").value.trim());
+  if (!audioUrl) return alert("آدرس آهنگ باید HTTPS باشد.");
+  const { error } = await db.from("music").insert({
+    title: $("musicTitle").value.trim(),
+    artist: $("musicArtist").value.trim(),
+    audio_url: audioUrl
+  });
+  if (error) return alert("خطا: " + error.message);
+  $("musicForm").reset();
+  await loadMusic();
+  await loadAdminMusic();
+});
+$("memberForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!isAdmin) return;
+  const imageInput = $("memberImage").value.trim();
+  const imageUrl = imageInput ? safeHttpUrl(imageInput) : "";
+  if (imageInput && !imageUrl) return alert("آدرس تصویر باید HTTPS باشد.");
+  const { error } = await db.from("members").insert({
+    name: $("memberName").value.trim(),
+    role: $("memberRole").value.trim(),
+    image_url: imageUrl
+  });
+  if (error) return alert("خطا: " + error.message);
+  $("memberForm").reset();
+  await loadMembers();
+  await loadAdminMembers();
+});
+async function deleteRecord(table, id) {
+  if (!isAdmin || !confirm("از حذف این مورد مطمئنی؟")) return;
+  const { error } = await db.from(table).delete().eq("id", id);
+  if (error) return alert("حذف انجام نشد: " + error.message);
+  if (table === "music") {
+    await loadMusic();
+    await loadAdminMusic();
+  }
+  if (table === "members") {
+    await loadMembers();
+    await loadAdminMembers();
+  }
+  if (table === "chat_messages") {
+    await renderChatMessages();
+    await loadAdminChat();
+  }
+}
+async function loadAdminMusic() {
+  if (!isAdmin || !db) return;
+  const box = $("adminMusicList");
+  box.replaceChildren();
+  const { data, error } = await db
+    .from("music")
+    .select("id,title,artist")
+    .order("created_at", { ascending: false });
+  if (error) return addText(box, "p", error.message);
+  (data || []).forEach(song => {
+    const row = make("div", "music-row");
+    addText(row, "span", song.title + " — " + (song.artist || ""));
+    const btn = make("button", "danger", "حذف");
+    btn.addEventListener("click", () => deleteRecord("music", song.id));
+    row.appendChild(btn);
+    box.appendChild(row);
+  });
+}
+async function loadAdminMembers() {
+  if (!isAdmin || !db) return;
+  const box = $("adminMembersList");
+  box.replaceChildren();
+  const { data, error } = await db
+    .from("members")
+    .select("id,name,role")
+    .order("created_at", { ascending: false });
+  if (error) return addText(box, "p", error.message);
+  (data || []).forEach(member => {
+    const row = make("div", "music-row");
+    addText(row, "span", member.name + " — " + (member.role || ""));
+    const btn = make("button", "danger", "حذف");
+    btn.addEventListener("click", () => deleteRecord("members", member.id));
+    row.appendChild(btn);
+    box.appendChild(row);
+  });
+}
+async function loadAdminChat() {
+  if (!isAdmin || !db) return;
+  const box = $("adminChatList");
+  box.replaceChildren();
+  const { data, error } = await db
+    .from("chat_messages")
+    .select("id,display_name,content,created_at")
+    .order("created_at", { ascending: false })
+    .limit(100);
+  if (error) return addText(box, "p", error.message);
+  (data || []).forEach(item => {
+    const row = make("div", "music-row");
+    addText(row, "span",
+      (item.display_name || "عضو") + ": " + item.content);
+    const btn = make("button", "danger", "حذف پیام");
+    btn.addEventListener("click", () =>
+      deleteRecord("chat_messages", item.id));
+    row.appendChild(btn);
+    box.appendChild(row);
+  });
+}
+async function start() {
+  if (!checkConfig()) return;
+  await refreshSession();
+  await loadSettings();
+  await loadMusic();
+  await loadMembers();
+  db.auth.onAuthStateChange(() => {
+    setTimeout(async () => {
+      await refreshSession();
+      if (isAdmin && $("admin").classList.contains("active")) {
+        await loadAdmin();
+      }
+    }, 0);
+  });
+}
+start();
 </script>
 </body>
 </html>
