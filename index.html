@@ -211,7 +211,7 @@ $("editMyProfileBtn").addEventListener("click",()=>{
 // Supabase Auth setup. Replace the placeholder below with the project's publishable/anon key.
 const SUPABASE_URL = "https://ttffiyxqxphixryjavq.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_WetuCjAtn1DCom1pOF3SKw_fxMbJdr_";
-const supabaseReady = !!(window.supabase && SUPABASE_PUBLISHABLE_KEY !== "sb_publishable_WetuCjAtn1DCom1pOF3SKw_fxMbJdr_");
+const supabaseReady = !!(window.supabase && SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_"));
 const supabaseClient = supabaseReady ? window.supabase.createClient(https://ttffiyxqxphixryjavq.supabase.co,sb_publishable_WetuCjAtn1DCom1pOF3SKw_fxMbJdr_) : null;
 function accountKey(){return $("email").value.trim().toLowerCase();}
 function showUserDashboard(name,email=""){
