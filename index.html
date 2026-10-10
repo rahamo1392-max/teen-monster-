@@ -186,6 +186,39 @@ $("chatForm").addEventListener("submit",e=>{e.preventDefault();const v=$("chatIn
 let isAdmin=localStorage.getItem("tm_is_admin")==="yes";
 const DEFAULT_ADMIN_PASSWORD="TM-ADMIN-2026";
 function updateAdminUI(){document.querySelectorAll(".admin-only").forEach(el=>el.classList.toggle("hidden",!isAdmin));$("adminBadge").textContent=isAdmin?"✓ مدیر وارد شده":"افزودن محتوا فقط برای مدیر";$("uploadBtn").classList.toggle("hidden",!isAdmin);renderMembers();}
+<button id="addNewsBtn" class="btn hidden" type="button">
+    ＋ نوشتن خبر
+</button>
+async function verifyNewsAdmin() {
+    if (!supabaseClient) return false;
+
+    const { data: { user }, error: authError } =
+        await supabaseClient.auth.getUser();
+
+    if (authError || !user) return false;
+
+    const { data, error } = await supabaseClient
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+    if (error) {
+        console.error("Admin verification failed:", error);
+        return false;
+    }
+
+    return data?.role === "admin";
+}
+async function refreshNewsAdminUI() {
+    const isVerifiedAdmin = await verifyNewsAdmin();
+
+    const addNewsBtn = document.getElementById("addNewsBtn");
+
+    if (addNewsBtn) {
+        addNewsBtn.classList.toggle("hidden", !isVerifiedAdmin);
+    }
+}
 $("adminLogoutBtn").addEventListener("click",()=>{isAdmin=false;localStorage.removeItem("tm_is_admin");updateAdminUI();$("accountStatus").textContent="از حساب مدیر خارج شدی.";});
 $("adminForm").addEventListener("submit",e=>{e.preventDefault();const pass=$("adminPassword").value;if(pass===(localStorage.getItem("tm_admin_password")||DEFAULT_ADMIN_PASSWORD)){isAdmin=true;localStorage.setItem("tm_is_admin","yes");updateAdminUI();$("accountStatus").textContent="ورود مدیر موفق بود؛ حالا می‌توانی اسم‌ها، توضیحات، عکس‌ها و آهنگ‌ها را تغییر بدهی."; $("adminPassword").value="";closeModal("accountModal");}else{$("accountStatus").textContent="رمز مدیر اشتباه است."; }});
 function readDemoUsers(){try{return JSON.parse(localStorage.getItem("tm_demo_users")||"{}")}catch(err){return {};}}
@@ -392,3 +425,4 @@ renderMembers();renderSongs();updateAdminUI();
 </script>
 </body>
 </html>
+refreshNewsAdminUI();
