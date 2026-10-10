@@ -287,7 +287,22 @@
         setStatus(authStatus, "ثبت‌نام ناموفق بود: " + error.message);
         return;
       }
-      if (data.session) {
+      if (data.user) {
+if (data.session) {
+currentUser = data.user;
+await checkAdminRole();
+renderAccount();
+closeModal();
+$(“accountForm”).reset();
+setStatus(“accountStatus”, “ثبت‌نام موفق بود؛ وارد سایت شدی.”, “success”);
+} else {
+setStatus(
+“accountStatus”,
+“حسابت ساخته شد! ایمیلت را برای تأیید بررسی کن؛ بعد از تأیید، از بخش ورود وارد شو.”,
+“success”
+);
+}
+}
         setStatus(authStatus, "ثبت‌نام موفق بود؛ وارد حساب شدی.");
       } else {
         setStatus(
