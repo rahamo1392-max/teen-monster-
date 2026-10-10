@@ -6,23 +6,91 @@
   <title>TEEN MONSTER</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    *{box-sizing:border-box}
-    body{margin:0;background:#100b18;color:#f8f4ff;font-family:tahoma,Arial,sans-serif}
-    header{padding:24px;text-align:center;background:#241333;border-bottom:1px solid #6f398e}
-    h1{color:#dca5ff;margin:0}
-    main{width:min(850px,92%);margin:25px auto}
-    .panel{background:#1d1428;border:1px solid #49315d;border-radius:16px;padding:20px;margin-bottom:20px}
-    input,textarea{width:100%;padding:12px;margin:8px 0;background:#100b18;color:white;border:1px solid #644477;border-radius:9px;font:inherit}
-    button{padding:11px 16px;border:0;border-radius:9px;background:#a84ee8;color:white;font:inherit;cursor:pointer;margin:4px}
-    button:hover{filter:brightness(1.12)}
-    .secondary{background:#49315d}
-    .danger{background:#a83255}
-    .hidden{display:none!important}
-    .news-item{padding:15px 0;border-bottom:1px solid #49315d}
-    .news-item:last-child{border-bottom:0}
-    .muted{color:#c7b5d4;font-size:13px}
-    .status{white-space:pre-wrap;color:#e2c5ff}
-    .row{display:flex;gap:8px;flex-wrap:wrap}
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #100b18;
+      color: #f8f4ff;
+      font-family: Tahoma, Arial, sans-serif;
+      line-height: 1.8;
+    }
+    header {
+      padding: 28px 16px;
+      text-align: center;
+      background: #241333;
+      border-bottom: 1px solid #6f398e;
+    }
+    header h1 {
+      color: #dca5ff;
+      margin: 0;
+      font-size: 30px;
+    }
+    main {
+      width: min(850px, 92%);
+      margin: 25px auto;
+    }
+    .panel {
+      background: #1d1428;
+      border: 1px solid #49315d;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    input, textarea {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background: #100b18;
+      color: white;
+      border: 1px solid #644477;
+      border-radius: 9px;
+      font: inherit;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      padding: 10px 17px;
+      border: 0;
+      border-radius: 9px;
+      background: #a84ee8;
+      color: white;
+      font: inherit;
+      cursor: pointer;
+      margin: 4px;
+    }
+    button:hover {
+      filter: brightness(1.12);
+    }
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+    .secondary { background: #49315d; }
+    .danger { background: #a83255; }
+    .hidden { display: none !important; }
+    .status {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      color: #e2c5ff;
+    }
+    .muted {
+      color: #c7b5d4;
+      font-size: 13px;
+    }
+    .news-item {
+      padding: 15px 0;
+      border-bottom: 1px solid #49315d;
+    }
+    .news-item:last-child {
+      border-bottom: 0;
+    }
+    .row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 <body>
@@ -34,8 +102,21 @@
   <section class="panel">
     <h2>👤 حساب کاربری</h2>
     <form id="authForm">
-      <input id="email" type="email" placeholder="ایمیل" autocomplete="email" required>
-      <input id="password" type="password" placeholder="رمز عبور (حداقل ۶ کاراکتر)" minlength="6" autocomplete="current-password" required>
+      <input
+        id="email"
+        type="email"
+        placeholder="ایمیل"
+        autocomplete="email"
+        required
+      >
+      <input
+        id="password"
+        type="password"
+        placeholder="رمز عبور (حداقل ۶ کاراکتر)"
+        minlength="6"
+        autocomplete="current-password"
+        required
+      >
       <div class="row">
         <button type="submit" id="loginBtn">ورود</button>
         <button type="button" id="signupBtn" class="secondary">ثبت‌نام</button>
@@ -48,10 +129,23 @@
   <section class="panel" id="news">
     <h2>📰 اخبار TEEN MONSTER</h2>
     <p class="muted">آخرین خبرها و اطلاعیه‌های گروه</p>
-    <button id="showEditorBtn" class="hidden">＋ نوشتن خبر</button>
+    <button id="showEditorBtn" class="hidden" type="button">
+      ＋ نوشتن خبر
+    </button>
     <form id="newsForm" class="hidden">
-      <input id="newsTitle" maxlength="160" placeholder="عنوان خبر" required>
-      <textarea id="newsContent" maxlength="12000" rows="5" placeholder="متن خبر..." required></textarea>
+      <input
+        id="newsTitle"
+        maxlength="160"
+        placeholder="عنوان خبر"
+        required
+      >
+      <textarea
+        id="newsContent"
+        maxlength="12000"
+        rows="5"
+        placeholder="متن خبر..."
+        required
+      ></textarea>
       <div class="row">
         <button type="submit" id="saveNewsBtn">انتشار خبر</button>
         <button type="button" id="cancelNewsBtn" class="secondary">انصراف</button>
@@ -63,21 +157,40 @@
 </main>
 <script>
 (() => {
+  "use strict";
+  // تنظیمات پروژه Supabase
   const SUPABASE_URL = "https://tttffiyxqxphixryjavq.supabase.co";
-  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_WetuCjAtn1DCom1pOF3SKw_fxMbJdr_";
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_WetuCjAtn1DCom1pOF3SKw_fxMbJdr_";
   const $ = id => document.getElementById(id);
   const authStatus = $("authStatus");
   const newsStatus = $("newsStatus");
+  function setStatus(element, message) {
+    element.textContent = message || "";
+  }
+  function show(element, visible) {
+    element.classList.toggle("hidden", !visible);
+  }
+  // بررسی بارگذاری کتابخانه
+  if (!window.supabase) {
+    setStatus(
+      authStatus,
+      "کتابخانه Supabase بارگذاری نشده است. اتصال اینترنت و آدرس کتابخانه را بررسی کن."
+    );
+    setStatus(newsStatus, "اتصال برقرار نشد.");
+    $("newsList").textContent = "";
+    return;
+  }
   if (
-  !window.supabase ||
-  !SUPABASE_PUBLISHABLE_KEY ||
-  SUPABASE_PUBLISHABLE_KEY === "sb_publishable_WetuCjAtn1DCom1pOF3SKw_fxMbJdr_"
-) {
-  authStatus.textContent = "اتصال Supabase برقرار نیست؛ کلید عمومی را بررسی کن.";
-  newsStatus.textContent = "اتصال Supabase هنوز تنظیم نشده است.";
-  $("newsList").textContent = "";
-  return;
-}
+    !SUPABASE_URL.startsWith("https://") ||
+    !SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_")
+  ) {
+    setStatus(authStatus, "آدرس پروژه یا کلید عمومی معتبر نیست.");
+    setStatus(newsStatus, "تنظیمات اتصال را بررسی کن.");
+    $("newsList").textContent = "";
+    return;
+  }
+  // ساخت اتصال
   const db = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
@@ -85,12 +198,9 @@
   let currentUser = null;
   let isVerifiedAdmin = false;
   let editingNewsId = null;
-  function setStatus(element, message) {
-    element.textContent = message || "";
-  }
-  function show(element, visible) {
-    element.classList.toggle("hidden", !visible);
-  }
+  let authRequestRunning = false;
+  let refreshVersion = 0;
+  // بررسی نقش واقعی حساب در دیتابیس
   async function verifyAdmin() {
     if (!currentUser) return false;
     const { data, error } = await db
@@ -99,18 +209,21 @@
       .eq("user_id", currentUser.id)
       .maybeSingle();
     if (error) {
-      console.error("Admin verification error:", error.message);
+      console.error("Admin verification:", error.message);
       return false;
     }
     return data?.role === "admin";
   }
   async function refreshSession() {
+    const version = ++refreshVersion;
     const { data, error } = await db.auth.getUser();
+    if (version !== refreshVersion) return;
     currentUser = error ? null : data.user;
     isVerifiedAdmin = await verifyAdmin();
+    if (version !== refreshVersion) return;
     $("userInfo").textContent = currentUser
       ? "وارد شده‌اید: " + currentUser.email
-      : "برای انتشار خبر یا مدیریت حساب وارد شوید.";
+      : "برای استفاده از حساب کاربری وارد شوید.";
     show($("logoutBtn"), !!currentUser);
     show($("showEditorBtn"), isVerifiedAdmin);
     if (!isVerifiedAdmin) {
@@ -119,46 +232,78 @@
     }
     await loadNews();
   }
+  // ورود
   $("authForm").addEventListener("submit", async event => {
     event.preventDefault();
-    setStatus(authStatus, "در حال ورود...");
-    const email = $("email").value.trim();
-    const password = $("password").value;
-    const { error } = await db.auth.signInWithPassword({ email, password });
-    if (error) {
-      setStatus(authStatus, "ورود ناموفق بود: " + error.message);
-      return;
+    if (authRequestRunning) return;
+    authRequestRunning = true;
+    const loginBtn = $("loginBtn");
+    loginBtn.disabled = true;
+    try {
+      setStatus(authStatus, "در حال ورود...");
+      const email = $("email").value.trim();
+      const password = $("password").value;
+      const { error } = await db.auth.signInWithPassword({
+        email,
+        password
+      });
+      if (error) {
+        setStatus(authStatus, "ورود ناموفق بود: " + error.message);
+        return;
+      }
+      setStatus(authStatus, "ورود موفق بود.");
+      await refreshSession();
+    } catch (error) {
+      setStatus(authStatus, "خطا در ورود: " + error.message);
+    } finally {
+      authRequestRunning = false;
+      loginBtn.disabled = false;
     }
-    setStatus(authStatus, "ورود موفق بود.");
-    await refreshSession();
   });
+  // ثبت‌نام
   $("signupBtn").addEventListener("click", async () => {
-    setStatus(authStatus, "در حال ثبت‌نام...");
+    if (authRequestRunning) return;
     const email = $("email").value.trim();
     const password = $("password").value;
     if (!email || password.length < 6) {
-      setStatus(authStatus, "ایمیل معتبر و رمز عبور حداقل ۶ کاراکتری وارد کن.");
+      setStatus(
+        authStatus,
+        "ایمیل معتبر وارد کن و رمز عبور باید حداقل ۶ کاراکتر داشته باشد."
+      );
       return;
     }
-    const { data, error } = await db.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: window.location.origin
+    authRequestRunning = true;
+    $("signupBtn").disabled = true;
+    try {
+      setStatus(authStatus, "در حال ثبت‌نام...");
+      const { data, error } = await db.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: window.location.origin
+        }
+      });
+      if (error) {
+        setStatus(authStatus, "ثبت‌نام ناموفق بود: " + error.message);
+        return;
       }
-    });
-    if (error) {
-      setStatus(authStatus, "ثبت‌نام ناموفق بود: " + error.message);
-      return;
+      if (data.session) {
+        setStatus(authStatus, "ثبت‌نام موفق بود؛ وارد حساب شدی.");
+      } else {
+        setStatus(
+          authStatus,
+          "درخواست ثبت‌نام انجام شد. اگر تأیید ایمیل فعال است، ایمیلت را بررسی کن."
+        );
+      }
+      await refreshSession();
+    } catch (error) {
+      setStatus(authStatus, "خطا در ثبت‌نام: " + error.message);
+    } finally {
+      authRequestRunning = false;
+      $("signupBtn").disabled = false;
     }
-    setStatus(
-      authStatus,
-      data.session
-        ? "ثبت‌نام موفق بود؛ اکنون می‌توانی از سایت استفاده کنی."
-        : "ثبت‌نام انجام شد. اگر تأیید ایمیل فعال است، ایمیلت را بررسی کن."
-    );
-    await refreshSession();
   });
+  // خروج
   $("logoutBtn").addEventListener("click", async () => {
     const { error } = await db.auth.signOut();
     if (error) {
@@ -168,8 +313,14 @@
     setStatus(authStatus, "از حساب خارج شدی.");
     await refreshSession();
   });
-  $("showEditorBtn").addEventListener("click", () => {
-    if (!isVerifiedAdmin) return;
+  // باز کردن فرم خبر جدید
+  $("showEditorBtn").addEventListener("click", async () => {
+    isVerifiedAdmin = await verifyAdmin();
+    if (!isVerifiedAdmin) {
+      show($("showEditorBtn"), false);
+      setStatus(newsStatus, "اجازه مدیریت اخبار را نداری.");
+      return;
+    }
     editingNewsId = null;
     $("newsTitle").value = "";
     $("newsContent").value = "";
@@ -180,12 +331,13 @@
     show($("newsForm"), false);
     editingNewsId = null;
   });
+  // ذخیره یا ویرایش خبر
   $("newsForm").addEventListener("submit", async event => {
     event.preventDefault();
-    if (!currentUser || !(await verifyAdmin())) {
-      isVerifiedAdmin = false;
-      show($("showEditorBtn"), false);
+    isVerifiedAdmin = await verifyAdmin();
+    if (!isVerifiedAdmin || !currentUser) {
       show($("newsForm"), false);
+      show($("showEditorBtn"), false);
       setStatus(newsStatus, "اجازه مدیریت اخبار را نداری.");
       return;
     }
@@ -195,45 +347,57 @@
       setStatus(newsStatus, "عنوان و متن خبر را وارد کن.");
       return;
     }
-    setStatus(newsStatus, "در حال ذخیره خبر...");
-    let result;
-    if (editingNewsId) {
-      result = await db
-        .from("news")
-        .update({
+    const saveBtn = $("saveNewsBtn");
+    saveBtn.disabled = true;
+    try {
+      setStatus(newsStatus, "در حال ذخیره خبر...");
+      let result;
+      if (editingNewsId) {
+        result = await db
+          .from("news")
+          .update({
+            title,
+            content,
+            updated_at: new Date().toISOString()
+          })
+          .eq("id", editingNewsId);
+      } else {
+        result = await db.from("news").insert({
           title,
           content,
-          updated_at: new Date().toISOString()
-        })
-        .eq("id", editingNewsId);
-    } else {
-      result = await db.from("news").insert({
-        title,
-        content,
-        author_id: currentUser.id
-      });
+          author_id: currentUser.id
+        });
+      }
+      if (result.error) {
+        setStatus(newsStatus, "ذخیره ناموفق بود: " + result.error.message);
+        return;
+      }
+      editingNewsId = null;
+      show($("newsForm"), false);
+      setStatus(newsStatus, "خبر با موفقیت ذخیره شد.");
+      await loadNews();
+    } catch (error) {
+      setStatus(newsStatus, "خطا در ذخیره خبر: " + error.message);
+    } finally {
+      saveBtn.disabled = false;
     }
-    if (result.error) {
-      setStatus(newsStatus, "ذخیره انجام نشد: " + result.error.message);
-      return;
-    }
-    setStatus(newsStatus, "خبر با موفقیت ذخیره شد.");
-    show($("newsForm"), false);
-    editingNewsId = null;
-    await loadNews();
   });
+  // دریافت و نمایش اخبار
   async function loadNews() {
+    const list = $("newsList");
+    list.textContent = "در حال دریافت اخبار...";
     const { data, error } = await db
       .from("news")
-      .select("id, title, content, created_at, author_id")
+      .select("id, title, content, created_at")
       .order("created_at", { ascending: false });
-    const list = $("newsList");
     list.replaceChildren();
     if (error) {
-      list.textContent = "دریافت اخبار ناموفق بود. تنظیمات جدول news را بررسی کن.";
-      console.error(error);
+      list.textContent = "دریافت اخبار ناموفق بود.";
+      setStatus(newsStatus, "خطای دریافت اخبار: " + error.message);
+      console.error("News loading:", error);
       return;
     }
+    setStatus(newsStatus, "");
     if (!data || data.length === 0) {
       list.textContent = "هنوز خبری منتشر نشده است.";
       return;
@@ -248,13 +412,21 @@
       body.textContent = item.content;
       const date = document.createElement("p");
       date.className = "muted";
-      date.textContent = new Date(item.created_at).toLocaleString("fa-IR");
+      date.textContent = item.created_at
+        ? new Date(item.created_at).toLocaleString("fa-IR")
+        : "";
       article.append(heading, body, date);
       if (isVerifiedAdmin) {
         const editBtn = document.createElement("button");
+        editBtn.type = "button";
         editBtn.textContent = "ویرایش";
         editBtn.className = "secondary";
-        editBtn.addEventListener("click", () => {
+        editBtn.addEventListener("click", async () => {
+          isVerifiedAdmin = await verifyAdmin();
+          if (!isVerifiedAdmin) {
+            show($("showEditorBtn"), false);
+            return;
+          }
           editingNewsId = item.id;
           $("newsTitle").value = item.title;
           $("newsContent").value = item.content;
@@ -263,16 +435,20 @@
           $("newsForm").scrollIntoView({ behavior: "smooth" });
         });
         const deleteBtn = document.createElement("button");
+        deleteBtn.type = "button";
         deleteBtn.textContent = "حذف";
         deleteBtn.className = "danger";
         deleteBtn.addEventListener("click", async () => {
-          if (!isVerifiedAdmin || !confirm("این خبر حذف شود؟")) return;
+          isVerifiedAdmin = await verifyAdmin();
+          if (!isVerifiedAdmin || !confirm("این خبر حذف شود؟")) {
+            return;
+          }
           const { error } = await db
             .from("news")
             .delete()
             .eq("id", item.id);
           if (error) {
-            setStatus(newsStatus, "حذف انجام نشد: " + error.message);
+            setStatus(newsStatus, "حذف ناموفق بود: " + error.message);
             return;
           }
           setStatus(newsStatus, "خبر حذف شد.");
@@ -283,9 +459,13 @@
       list.append(article);
     });
   }
+  // هماهنگی وضعیت ورود با Supabase
   db.auth.onAuthStateChange(() => {
-    setTimeout(refreshSession, 0);
+    setTimeout(() => {
+      refreshSession();
+    }, 0);
   });
+  // شروع برنامه
   refreshSession();
 })();
 </script>
