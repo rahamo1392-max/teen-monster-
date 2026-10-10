@@ -50,8 +50,40 @@
       <p class="notice">توجه: این فایل HTML به‌تنهایی فضای ذخیره‌سازی آنلاین ندارد. برای اینکه تغییرات و آهنگ‌ها برای همه بازدیدکننده‌ها نمایش داده شوند، باید به Firebase یا یک سرور متصل شود.</p>
     </section>
     <aside>
-      <section class="panel side-card">
-        <h2>♬ تازه‌های گروه</h2>
+      <section class="panel side-card" id="news">
+  <div class="section-head">
+    <div>
+      <h2>📰 اخبار TEEN MONSTER</h2>
+      <div class="sub">آخرین خبرها و اطلاعیه‌های گروه</div>
+    </div>
+    <button class="btn admin-only hidden" id="addNewsBtn" type="button">
+      ＋ نوشتن خبر
+    </button>
+  </div>
+
+  <div id="newsStatus" class="notice" role="status" aria-live="polite"></div>
+
+  <form id="newsForm" class="form hidden">
+    <input id="newsTitle" class="field"
+      placeholder="عنوان خبر" maxlength="160" required>
+
+    <textarea id="newsContent" class="field"
+      placeholder="متن خبر را بنویس..."
+      rows="6" maxlength="12000" required></textarea>
+
+    <button class="btn" type="submit" id="saveNewsBtn">
+      انتشار خبر
+    </button>
+
+    <button class="btn ghost" type="button" id="cancelNewsBtn">
+      انصراف
+    </button>
+  </form>
+
+  <div id="newsList">
+    <p class="notice">در حال دریافت اخبار...</p>
+  </div>
+</section>
         <div class="news-item">به صفحه رسمی طرفدارهای TEEN MONSTER خوش اومدی!</div>
         <div class="news-item">آهنگ‌های جدیدت رو از بخش موسیقی اضافه کن.</div>
         <div class="news-item">پروفایل اعضا رو باز کن و گفت‌وگو رو شروع کن.</div><div class="news-item">مدیریت رمز و ویرایش پروفایل در این نسخه روی همین مرورگر انجام می‌شود؛ همگام‌سازی عمومی به بک‌اند آنلاین نیاز دارد.</div>
@@ -112,11 +144,11 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const members=[
- {name:"اسم عضو ۱",role:"عضو گروه TEEN MONSTER",emoji:"🎤",bio:"اینجا درباره عضو اول بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
- {name:"اسم عضو ۲",role:"عضو گروه TEEN MONSTER",emoji:"🎸",bio:"اینجا درباره عضو دوم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
- {name:"اسم عضو ۳",role:"عضو گروه TEEN MONSTER",emoji:"🎧",bio:"اینجا درباره عضو سوم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
- {name:"اسم عضو ۴",role:"عضو گروه TEEN MONSTER",emoji:"🥁",bio:"اینجا درباره عضو چهارم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
- {name:"اسم عضو ۵",role:"عضو گروه TEEN MONSTER",emoji:"🎼",bio:"اینجا درباره عضو پنجم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
+ {name:"اسم عضو ۱",role:"عضو گروه TEEN MONSTER",emoji:"🦋",bio:"اینجا درباره عضو اول بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
+ {name:"اسم عضو ۲",role:"عضو گروه TEEN MONSTER",emoji:"🦌",bio:"اینجا درباره عضو دوم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
+ {name:"اسم عضو ۳",role:"عضو گروه TEEN MONSTER",emoji:"🐰",bio:"اینجا درباره عضو سوم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
+ {name:"اسم عضو ۴",role:"عضو گروه TEEN MONSTER",emoji:"🐕",bio:"اینجا درباره عضو چهارم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
+ {name:"اسم عضو ۵",role:"عضو گروه TEEN MONSTER",emoji:"",bio:"اینجا درباره عضو پنجم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
  {name:"اسم عضو ۶",role:"عضو گروه TEEN MONSTER",emoji:"🎹",bio:"اینجا درباره عضو ششم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."},
  {name:"اسم عضو ۷",role:"عضو گروه TEEN MONSTER",emoji:"🎵",bio:"اینجا درباره عضو هفتم بنویس؛ علایق، شخصیت، چیزهایی که دوست دارد و چند جمله برای طرفدارها."}
 ];
